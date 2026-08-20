@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import arumaLogo from '../assets/images/logoo.png';
+
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = '', size = 128 } = Astro.props;
+---
+
+<Image
+  class:list={['brand-mark-image', className]}
+  src={arumaLogo}
+  alt=""
+  width={size}
+  quality={90}
+  loading="eager"
+  decoding="async"
+/>

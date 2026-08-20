@@ -1,0 +1,56 @@
+---
+import BrandMark from './BrandMark.astro';
+---
+
+<div class="announcement" data-announcement>
+  <span><i></i> Now open in Marshall</span>
+  <span class="hidden sm:inline">Fresh fire · fine tequila · good company</span>
+  <a href="#visit">900 Clarice Ave <span aria-hidden="true">↗</span></a>
+</div>
+
+<header class="site-header" data-header>
+  <a class="brand" href="#top" aria-label="Aruma home">
+    <BrandMark class="brand__mark" />
+    <span class="brand__type">
+      <b>ARUMA</b>
+      <small>TACOS &amp; TEQUILA</small>
+    </span>
+  </a>
+
+  <nav class="header-nav" aria-label="Primary navigation">
+    <a href="#story">Our story</a>
+    <a class="menu-nav-link" href="/menu"><i></i> Menu</a>
+    <a href="#agave">Agave</a>
+    <a href="#gather">Gather</a>
+    <a href="#visit">Visit</a>
+  </nav>
+
+  <button class="button button--acid header-reserve" type="button" data-reserve-open>
+    Reserve <span aria-hidden="true">↗</span>
+  </button>
+
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open menu" data-menu-toggle>
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-navigation" id="mobile-navigation" aria-hidden="true" data-mobile-menu>
+  <div class="mobile-navigation__top">
+    <a class="brand" href="#top" aria-label="Aruma home">
+      <BrandMark class="brand__mark" />
+      <span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span>
+    </a>
+    <button type="button" aria-label="Close menu" data-menu-close>Close</button>
+  </div>
+  <nav aria-label="Mobile navigation">
+    <a href="#story"><span>01</span> Our story</a>
+    <a class="mobile-menu-featured" href="/menu"><span>02</span> View the menu <i>↗</i></a>
+    <a href="#agave"><span>03</span> Agave</a>
+    <a href="#gather"><span>04</span> Gather</a>
+    <a href="#visit"><span>05</span> Visit</a>
+  </nav>
+  <div class="mobile-navigation__footer">
+    <p>900 Clarice Ave<br />Marshall, Minnesota</p>
+    <button class="button button--acid" type="button" data-reserve-open>Reserve your table <span>↗</span></button>
+  </div>
+</div>

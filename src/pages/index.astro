@@ -1,0 +1,339 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import BrandMark from '../components/BrandMark.astro';
+import ReservationDialog from '../components/ReservationDialog.astro';
+import PromoSection from '../components/PromoSection.astro';
+import { menu, site } from '../data/site';
+
+import heroImage from '../assets/images/bar.png';
+import cocktailImage from '../assets/images/aruma-cocktail.png';
+import birriaImage from '../assets/images/birria.jpg';
+import fajitasImage from '../assets/images/fajitas.jpg';
+import churrosImage from '../assets/images/churros.jpg';
+import margaritaImage from '../assets/images/margarita.jpg';
+import agaveImage from '../assets/images/agave-field.jpg';
+import barNormalImage from '../assets/store pics/bar normal.png';
+import diningRoomImage from '../assets/store pics/inside.png';
+import diningRoomAltImage from '../assets/store pics/inside2.png';
+import kitchenImage from '../assets/store pics/kitchen.png';
+import patioImage from '../assets/store pics/outsite.png';
+
+const menuImages = {
+  tacos: birriaImage,
+  kitchen: fajitasImage,
+  cocktails: margaritaImage,
+  sweets: churrosImage,
+};
+
+const menuWidths = {
+  tacos: 1400,
+  kitchen: 1200,
+  cocktails: 1200,
+  sweets: 667,
+};
+---
+
+<BaseLayout
+  title="Aruma Tacos & Tequila | Marshall, Minnesota"
+  description="Fresh fire, fine tequila, and bold Mexican flavor in Marshall, Minnesota. Welcome to Aruma Tacos & Tequila."
+>
+  <div class="page-loader" aria-hidden="true" data-loader>
+    <div class="page-loader__brand"><BrandMark /><span>ARUMA</span></div>
+    <div class="page-loader__track"><i data-loader-line></i></div>
+    <span class="page-loader__count" data-loader-count>00</span>
+  </div>
+
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+  <div class="cursor" aria-hidden="true" data-cursor><span>View</span></div>
+
+  <Header />
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__media" data-hero-media>
+        <Image src={heroImage} alt="The illuminated bar inside Aruma Tacos & Tequila in Marshall" width={1536} loading="eager" decoding="sync" quality={88} />
+      </div>
+      <div class="hero__wash"></div>
+      <div class="hero__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="hero__content">
+        <p class="kicker hero__kicker" data-hero-item><span>Marshall · MN</span> Fresh fire. Fine tequila.</p>
+        <h1 id="hero-heading" class="hero__title" aria-label="Savor the unexpected">
+          <span class="split-line"><span>Savor</span></span>
+          <span class="split-line hero__title-indent"><span>the</span></span>
+          <span class="split-line hero__title-script"><span>unexpected.</span></span>
+        </h1>
+        <div class="hero__lower" data-hero-item>
+          <p>Mexican flavor with a pulse. Come for the fire, stay for the feeling, and let one quick dinner become the whole night.</p>
+          <div class="hero__actions">
+            <button class="button button--copper" type="button" data-reserve-open>Reserve a table <span>↗</span></button>
+            <a class="text-link text-link--light" href="/menu">View the full menu <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+      <aside class="hero__note" data-hero-item>
+        <span class="hero__note-number">01</span>
+        <div>
+          <small>TONIGHT AT ARUMA</small>
+          <strong>Doors open at 11</strong>
+          <span>Lunch · Dinner · Late pours</span>
+        </div>
+      </aside>
+      <a class="hero__scroll" href="#story" aria-label="Scroll to our story"><i></i><span>Scroll to feel it</span></a>
+      <div class="hero__stamp" aria-hidden="true">
+        <svg viewBox="0 0 150 150">
+          <defs><path id="stamp-path" d="M75 75m-55 0a55 55 0 1 1 110 0a55 55 0 1 1-110 0"></path></defs>
+          <text><textPath href="#stamp-path">MARSHALL · MINNESOTA · NOW OPEN · </textPath></text>
+        </svg>
+        <BrandMark />
+      </div>
+    </section>
+
+    <PromoSection />
+
+    <section class="marquee" aria-label="Aruma highlights">
+      <div class="marquee__track">
+        {Array.from({ length: 2 }).map(() => (
+          <div>
+            <span>Fire kissed</span><i>✦</i><span>Hand shaken</span><i>✦</i><span>Made with alma</span><i>✦</i><span>Best shared</span><i>✦</i>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="story section-shell" id="story">
+      <div class="story__copy">
+        <p class="kicker kicker--dark" data-reveal><span>01 · Our story</span> This is the Aruma way</p>
+        <h2 class="display-heading display-heading--green" data-split>
+          More than<br />a meal. <em>A ritual.</em>
+        </h2>
+        <div class="story__body" data-reveal>
+          <p class="story__lead">Aruma is the warmth around the table, the first squeeze of lime, and that perfect bite you immediately pass to someone else.</p>
+          <p>We bring time-honored Mexican flavor into a spirited, modern room. Tortillas arrive warm. Citrus is squeezed fresh. Agave pours are chosen with intention. Every detail is designed to turn an ordinary night out into something you’ll talk about tomorrow.</p>
+          <a class="text-link" href="#ritual">See how we do it <span>↓</span></a>
+        </div>
+        <div class="story__facts" data-stagger>
+          <div><strong data-count="100">0</strong><span>% fresh flavor</span></div>
+          <div><strong data-count="45">0</strong><span>plates &amp; pours</span></div>
+          <div><strong data-count="1">0</strong><span>new ritual</span></div>
+        </div>
+      </div>
+
+      <div class="story__collage" data-cursor-label="Feel it">
+        <figure class="story__image story__image--main image-reveal" data-parallax="0.08">
+          <Image src={diningRoomAltImage} alt="The dining room inside Aruma in Marshall" width={1448} quality={86} loading="lazy" />
+        </figure>
+        <figure class="story__image story__image--detail image-reveal" data-parallax="-0.06">
+          <Image src={kitchenImage} alt="Aruma's open kitchen pass with plates ready for service" width={900} quality={86} loading="lazy" />
+        </figure>
+        <div class="story__seal" aria-hidden="true"><span>EST.</span><strong>26</strong><small>MARSHALL</small></div>
+        <p class="story__caption">A room with<br />good energy.</p>
+      </div>
+    </section>
+
+    <section class="ritual" id="ritual">
+      <header class="ritual__head section-shell">
+        <div>
+          <p class="kicker" data-reveal><span>02 · The ritual</span> Built around the senses</p>
+          <h2 class="display-heading" data-split>Follow the<br /><em>feeling.</em></h2>
+        </div>
+        <p data-reveal>Three beats. One table. A thousand reasons to order one more thing.</p>
+      </header>
+      <div class="ritual__rail" data-horizontal-rail>
+        <article class="ritual-card" data-ritual-card>
+          <div class="ritual-card__image image-reveal"><Image src={fajitasImage} alt="Sizzling fajitas with peppers and warm tortillas" width={1300} quality={85} loading="lazy" /></div>
+          <span>01</span><div><small>HEAR IT FIRST</small><h3>Fresh from<br /><em>the fire.</em></h3><p>Char, smoke, sizzle—the room knows your plate is coming before you do.</p></div>
+        </article>
+        <article class="ritual-card ritual-card--lifted" data-ritual-card>
+          <div class="ritual-card__image image-reveal"><Image src={birriaImage} alt="Birria tacos with consommé and fresh lime" width={1400} quality={82} loading="lazy" /></div>
+          <span>02</span><div><small>PASS IT AROUND</small><h3>Made for<br /><em>the table.</em></h3><p>The best order is everyone’s order. Reach across, steal a bite, find a favorite.</p></div>
+        </article>
+        <article class="ritual-card" data-ritual-card>
+          <div class="ritual-card__image image-reveal"><Image src={churrosImage} alt="Warm cinnamon churros ready for dipping" width={667} quality={85} loading="lazy" /></div>
+          <span>03</span><div><small>STAY AWHILE</small><h3>One more<br /><em>for the road.</em></h3><p>Dinner ends when the stories do. There is always room for churros.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="menu-section section-shell" id="menu">
+      <header class="menu-section__head">
+        <div>
+          <p class="kicker" data-reveal><span>03 · Menu</span> Pick your pleasure</p>
+          <h2 class="display-heading" data-split>Come <em>hungry.</em><br />Leave inspired.</h2>
+        </div>
+        <div data-reveal>
+          <p>A tight edit of house favorites. Tap a category and discover what your table is ordering next.</p>
+          <a class="button button--acid" href="/menu">Open the full digital menu <span>↗</span></a>
+        </div>
+      </header>
+
+      <div class="menu-tabs" role="tablist" aria-label="Menu categories" data-menu-tabs>
+        {Object.entries(menu).map(([key, category], index) => (
+          <button class:list={['menu-tab', { 'is-active': index === 0 }]} type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-menu-tab={key}>
+            <span>0{index + 1}</span>{category.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="menu-stage" data-menu-stage>
+        <div class="menu-stage__visual" data-cursor-label="Taste">
+          {Object.entries(menu).map(([key, category], index) => (
+            <figure class:list={['menu-visual', { 'is-active': index === 0 }]} data-menu-visual={key}>
+              <Image src={menuImages[key as keyof typeof menuImages]} alt={category.hero.name} width={menuWidths[key as keyof typeof menuWidths]} quality={82} loading="lazy" />
+              <figcaption>
+                <span>{category.hero.note}</span>
+                <h3>{category.hero.name}</h3>
+                <p>{category.hero.description}</p>
+                <b>${category.hero.price}</b>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="menu-stage__panels">
+          {Object.entries(menu).map(([key, category], categoryIndex) => (
+            <div class:list={['menu-panel', { 'is-active': categoryIndex === 0 }]} data-menu-panel={key}>
+              <div class="menu-panel__label"><span>HOUSE EDIT</span><small>Hover to choose</small></div>
+              {category.items.map((item, itemIndex) => (
+                <article class="menu-item">
+                  <span>0{itemIndex + 1}</span>
+                  <div><strong>{item[0]}</strong><small>{item[1]}</small></div>
+                  <b>${item[2]}</b>
+                  <i aria-hidden="true">↗</i>
+                </article>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <footer class="menu-section__foot"><span>Vegetarian options available</span><i></i><span>Ask about allergens</span><i></i><span>Made fresh to order</span></footer>
+    </section>
+
+    <section class="manifesto" aria-label="Aruma manifesto">
+      <p class="kicker kicker--dark" data-reveal><span>Our promise</span> Never ordinary</p>
+      <h2 data-manifesto>
+        <span>Bright citrus.</span>
+        <span>Deep smoke.</span>
+        <span>Good trouble.</span>
+      </h2>
+      <div class="manifesto__mark" aria-hidden="true"><BrandMark size={480} /></div>
+    </section>
+
+    <section class="agave" id="agave">
+      <div class="agave__landscape" data-parallax="0.1">
+        <Image src={agaveImage} alt="Blue agave plants stretching across a golden landscape" width={750} quality={82} loading="lazy" />
+      </div>
+      <div class="agave__content section-shell">
+        <header>
+          <p class="kicker" data-reveal><span>04 · The bar</span> From agave to glass</p>
+          <h2 class="display-heading" data-split>Find your<br /><em>main squeeze.</em></h2>
+          <p data-reveal>Bright, smoky, spicy, clean. Our bar treats tequila and mezcal like the beautifully complex spirits they are.</p>
+        </header>
+        <div class="agave__showcase">
+          <figure class="agave__cocktail image-reveal" data-cursor-label="Sip">
+            <Image src={cocktailImage} alt="A smoky handcrafted citrus cocktail at the Aruma bar" width={1024} quality={88} loading="lazy" />
+            <span class="agave__badge">SHAKEN<br />TO ORDER</span>
+          </figure>
+          <div class="agave__selector" data-cocktail-selector>
+            <div class="agave__selector-head"><span>TASTING FLIGHT</span><small>Pick a mood</small></div>
+            <button class="cocktail-choice is-active" type="button" data-note="Crisp · lime · agave" data-proof="Bright & clean"><span>01</span><strong>House Margarita</strong><small>$10</small></button>
+            <button class="cocktail-choice" type="button" data-note="Orange · oak · sea salt" data-proof="Warm & smooth"><span>02</span><strong>Reposado Aruma</strong><small>$13</small></button>
+            <button class="cocktail-choice" type="button" data-note="Mezcal · grapefruit · smoke" data-proof="Smoky & tart"><span>03</span><strong>Smoked Paloma</strong><small>$13</small></button>
+            <button class="cocktail-choice" type="button" data-note="Four flavors · one flight" data-proof="Made to share"><span>04</span><strong>Margarita Flight</strong><small>$22</small></button>
+            <div class="agave__notes"><span>TASTING NOTES</span><strong data-tasting-note>Crisp · lime · agave</strong><small data-tasting-mood>Bright &amp; clean</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="The Aruma experience">
+      <div class="gallery__intro section-shell">
+        <p class="kicker kicker--dark" data-reveal><span>05 · Inside Aruma</span> Look around</p>
+        <h2 class="display-heading display-heading--green" data-split>A little escape,<br /><em>right here.</em></h2>
+        <p data-reveal>Warm light, loud plates, cold glasses, and the kind of room that makes you forget to check the time.</p>
+      </div>
+      <div class="gallery__track" data-gallery-track>
+        <figure class="gallery-shot gallery-shot--wide"><Image src={barNormalImage} alt="Aruma's illuminated tequila bar" width={1500} quality={86} loading="lazy" /><figcaption><span>01</span>The bar</figcaption></figure>
+        <figure class="gallery-shot gallery-shot--portrait"><Image src={kitchenImage} alt="Plates waiting beneath the kitchen pass lights" width={900} quality={84} loading="lazy" /><figcaption><span>02</span>The pass</figcaption></figure>
+        <figure class="gallery-shot gallery-shot--square"><Image src={diningRoomImage} alt="Aruma's bright dining room and marble tables" width={1100} quality={84} loading="lazy" /><figcaption><span>03</span>The room</figcaption></figure>
+        <figure class="gallery-shot gallery-shot--wide"><Image src={patioImage} alt="Aruma's covered outdoor patio in Marshall" width={1400} quality={86} loading="lazy" /><figcaption><span>04</span>The patio</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="gather" id="gather">
+      <div class="gather__media">
+        <Image src={patioImage} alt="The covered outdoor patio at Aruma, ready for groups" width={1448} quality={88} loading="lazy" />
+      </div>
+      <div class="gather__shade"></div>
+      <div class="gather__copy">
+        <p class="kicker" data-reveal><span>06 · Gather</span> Your people, our table</p>
+        <h2 class="display-heading" data-split>Bring the<br /><em>whole crew.</em></h2>
+        <p data-reveal>Birthdays, team dinners, family nights, or no reason at all. Tell us what you’re planning and we’ll help make it feel effortless.</p>
+        <button class="button button--acid" type="button" data-reserve-open>Plan a gathering <span>↗</span></button>
+      </div>
+      <div class="gather__note"><span>GROUP DINING</span><strong>7+ guests</strong><small>Let’s make a night of it</small></div>
+    </section>
+
+    <section class="visit section-shell" id="visit">
+      <header class="visit__head">
+        <p class="kicker kicker--dark" data-reveal><span>07 · Visit</span> Pull up a chair</p>
+        <h2 class="display-heading display-heading--green" data-split>Meet us in<br /><em>Marshall.</em></h2>
+      </header>
+      <div class="visit__grid">
+        <a class="visit__map" href={site.directions} target="_blank" rel="noopener" aria-label="Get directions to Aruma">
+          <svg viewBox="0 0 900 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g class="map-roads"><path d="M-80 130c180-80 290 85 470 0s315-60 560 80"></path><path d="M-50 405c170-100 320 40 500-45s300-30 500 30"></path><path d="M200-50c60 175-15 290 90 430s25 195 95 310"></path><path d="M665-50c-80 180 50 300-20 440s35 185-25 300"></path></g>
+            <g class="map-minor"><path d="M-20 260c165-42 280 75 455 5s315-35 500 45"></path><path d="M70-20c110 160 40 300 115 445s35 160 65 240"></path><path d="M790-20c-90 170-10 270-65 430s5 170-25 250"></path></g>
+          </svg>
+          <span class="visit__pin"><BrandMark /></span>
+          <span class="visit__road visit__road--one">CLARICE AVE</span>
+          <span class="visit__road visit__road--two">HWY 23</span>
+          <span class="visit__directions">Get directions <b>↗</b></span>
+        </a>
+        <div class="visit__details">
+          <div class="visit__status"><i></i><span>NOW OPEN</span></div>
+          <div class="visit__block">
+            <span>FIND US</span>
+            <address>900 Clarice Ave<br />Marshall, MN 56258</address>
+          </div>
+          <div class="visit__block">
+            <span>HOURS</span>
+            {site.hours.map((hours) => <div class="visit__hours"><strong>{hours[0]}</strong><time>{hours[1]}</time></div>)}
+          </div>
+          <p>Lunch. Date night. Family dinner. Just one excellent margarita. There’s a seat for you.</p>
+          <button class="button button--copper" type="button" data-reserve-open>Reserve your table <span>↗</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__orbit" aria-hidden="true"></div>
+      <BrandMark class="final-cta__mark" />
+      <p>GOOD FOOD · COLD GLASSES · GREAT STORIES</p>
+      <h2 data-split>See you at<br /><em>Aruma.</em></h2>
+      <div>
+        <button class="button button--acid" type="button" data-reserve-open>Save your seat <span>↗</span></button>
+        <a class="text-link text-link--light" href={site.directions} target="_blank" rel="noopener">Get directions <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <a class="brand" href="#top"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+      <p>Mexican flavor with a pulse.<br />Now serving Marshall.</p>
+    </div>
+    <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href="/menu">Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
+    <div class="footer__visit"><span>VISIT</span><p>900 Clarice Ave<br />Marshall, MN 56258</p><a href={site.directions} target="_blank" rel="noopener">Directions ↗</a></div>
+    <div class="footer__open"><span>COME AS YOU ARE</span><button class="button button--outline-light" type="button" data-reserve-open>Reserve <span>↗</span></button></div>
+    <div class="footer__bottom"><small>© {new Date().getFullYear()} Aruma Tacos &amp; Tequila</small><small>Concept photography · Replace before launch</small><a href="#top">Back to top ↑</a></div>
+  </footer>
+
+  <div class="mobile-booking-bar">
+    <a href="/menu"><i></i> Full menu <b>↗</b></a>
+    <button type="button" data-reserve-open>Reserve <b>↗</b></button>
+  </div>
+
+  <ReservationDialog />
+</BaseLayout>

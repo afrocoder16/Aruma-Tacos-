@@ -1,0 +1,52 @@
+<dialog class="reservation-dialog" data-reservation-dialog>
+  <button class="dialog-close" type="button" aria-label="Close reservation form" data-dialog-close>
+    <span></span><span></span>
+  </button>
+  <div class="reservation-dialog__intro">
+    <p class="kicker kicker--dark"><span>RSVP</span> Your table is waiting</p>
+    <h2>Make it a<br /><em>night out.</em></h2>
+    <p>Send a reservation request and the Aruma team will follow up to confirm your table.</p>
+  </div>
+  <form class="reservation-form" data-reservation-form>
+    <label>
+      <span>Name</span>
+      <input name="name" type="text" placeholder="Your name" autocomplete="name" required />
+    </label>
+    <label>
+      <span>Email</span>
+      <input name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+    </label>
+    <div class="form-row">
+      <label>
+        <span>Date</span>
+        <input name="date" type="date" required />
+      </label>
+      <label>
+        <span>Time</span>
+        <select name="time" required>
+          <option value="">Select</option>
+          <option>5:00 PM</option><option>5:30 PM</option><option>6:00 PM</option>
+          <option>6:30 PM</option><option>7:00 PM</option><option>7:30 PM</option>
+          <option>8:00 PM</option><option>8:30 PM</option>
+        </select>
+      </label>
+    </div>
+    <label>
+      <span>Party size</span>
+      <select name="party" required>
+        <option value="">Select</option>
+        <option>2 guests</option><option>3 guests</option><option>4 guests</option>
+        <option>5 guests</option><option>6 guests</option><option>7+ guests</option>
+      </select>
+    </label>
+    <button class="button button--copper" type="submit">Request the table <span>↗</span></button>
+    <small>Submitting this concept form does not create a live reservation.</small>
+  </form>
+  <div class="reservation-success" hidden data-reservation-success>
+    <div class="reservation-success__mark">✓</div>
+    <p class="kicker kicker--dark"><span>All set</span> Request received</p>
+    <h2>See you<br /><em>soon.</em></h2>
+    <p>This demo is ready to connect to Aruma’s booking platform.</p>
+    <button class="button button--forest" type="button" data-dialog-close>Back to the site</button>
+  </div>
+</dialog>

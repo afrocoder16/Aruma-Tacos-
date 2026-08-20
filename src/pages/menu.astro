@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import ReservationDialog from '../components/ReservationDialog.astro';
+import { fullMenu, site } from '../data/site';
+import '../styles/menu.css';
+
+import birriaImage from '../assets/images/birria.jpg';
+import fajitasImage from '../assets/images/fajitas.jpg';
+import cocktailImage from '../assets/images/aruma-cocktail.png';
+import churrosImage from '../assets/images/churros.jpg';
+
+const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight', 'Churros']);
+---
+
+<BaseLayout
+  title="Menu | Aruma Tacos & Tequila"
+  description="Explore tacos, house signatures, sizzling fajitas, margaritas, tequila, mezcal, and desserts at Aruma in Marshall, Minnesota."
+>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="digital-menu-header">
+    <a class="brand" href="/" aria-label="Back to Aruma home">
+      <BrandMark class="brand__mark" />
+      <span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span>
+    </a>
+    <div class="digital-menu-header__label"><i></i><span>Digital menu</span><small>Marshall · Minnesota</small></div>
+    <div class="digital-menu-header__actions">
+      <a href="/">Back home</a>
+      <button class="button button--copper" type="button" data-reserve-open>Reserve <span>↗</span></button>
+    </div>
+  </header>
+
+  <main class="digital-menu" id="menu-top">
+    <section class="digital-menu-hero">
+      <div class="digital-menu-hero__copy">
+        <p class="kicker kicker--dark"><span>Fresh from the kitchen</span> The full spread</p>
+        <h1><span>The</span><em>menu.</em></h1>
+        <p>Start with something for the table, find your favorite taco, and leave room for one last round.</p>
+        <div class="digital-menu-hero__details">
+          <div><span>LOCATION</span><strong>Marshall, MN</strong></div>
+          <div><span>SERVING</span><strong>Lunch &amp; dinner</strong></div>
+          <div><span>GOOD TO KNOW</span><strong>Made fresh</strong></div>
+        </div>
+      </div>
+      <figure class="digital-menu-hero__image">
+        <Image src={birriaImage} alt="Aruma quesabirria tacos with consommé and lime" width={1500} quality={84} loading="eager" />
+        <figcaption><span>HOUSE FAVORITE</span><strong>Quesabirria</strong><small>Slow braised · crisped to order</small></figcaption>
+        <div class="digital-menu-hero__price"><small>FROM</small><b>$18</b></div>
+      </figure>
+    </section>
+
+    <section class="menu-finder" aria-label="Find a menu item">
+      <label for="menu-search"><span>LOOKING FOR SOMETHING?</span><strong>Search the menu</strong></label>
+      <div class="menu-finder__field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <input id="menu-search" type="search" placeholder="Try tacos, chicken, mezcal…" autocomplete="off" data-menu-search />
+        <button type="button" data-menu-clear hidden>Clear</button>
+      </div>
+      <span class="menu-finder__count" aria-live="polite" data-menu-count>{fullMenu.reduce((total, group) => total + group.items.length, 0)} items</span>
+    </section>
+
+    <nav class="menu-category-nav" aria-label="Menu categories" data-menu-category-nav>
+      <span>JUMP TO</span>
+      <div>
+        {fullMenu.map((group, index) => <a class:list={{ 'is-active': index === 0 }} href={`#${group.id}`} data-category-link={group.id}>{group.category}</a>)}
+      </div>
+    </nav>
+
+    <div class="digital-menu-list">
+      {fullMenu.map((group, groupIndex) => {
+        const isDark = group.id === 'cocktails' || group.id === 'agave';
+        return (
+          <section class:list={['digital-menu-group', { 'digital-menu-group--dark': isDark }]} id={group.id} data-menu-group>
+            <div class="digital-menu-group__inner">
+              <header class="digital-menu-group__head">
+                <span>0{groupIndex + 1}</span>
+                <p>{group.note}</p>
+                <h2>{group.category}</h2>
+                {group.id === 'cocktails' && <small>Fresh citrus · premium pours · shaken to order</small>}
+                {group.id === 'tacos' && <small>Served with rice, beans, verde, and picante</small>}
+              </header>
+              <div class="digital-menu-group__items">
+                {group.items.map((item, itemIndex) => (
+                  <article class="digital-menu-item" data-menu-item data-search={`${item[0]} ${item[1]} ${group.category}`.toLowerCase()}>
+                    <span class="digital-menu-item__number">{String(itemIndex + 1).padStart(2, '0')}</span>
+                    <div>
+                      <div class="digital-menu-item__title">
+                        <h3>{item[0]}</h3>
+                        {featuredItems.has(item[0]) && <span>ARUMA PICK</span>}
+                      </div>
+                      <p>{item[1]}</p>
+                    </div>
+                    <strong>${item[2]}</strong>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <section class="menu-empty" hidden data-menu-empty>
+      <span>NO MATCH YET</span><h2>Try another craving.</h2><p>Search for a dish, ingredient, or category.</p><button class="button button--forest" type="button" data-menu-clear>Clear search</button>
+    </section>
+
+    <section class="menu-gallery" aria-label="Aruma menu favorites">
+      <figure><Image src={fajitasImage} alt="Sizzling Aruma fajitas" width={1300} quality={83} loading="lazy" /><figcaption><span>FROM THE FIRE</span><strong>Fajitas Aruma</strong></figcaption></figure>
+      <figure><Image src={cocktailImage} alt="A handcrafted citrus cocktail" width={900} quality={84} loading="lazy" /><figcaption><span>FROM THE BAR</span><strong>Shaken fresh</strong></figcaption></figure>
+      <figure><Image src={churrosImage} alt="Warm cinnamon churros" width={667} quality={84} loading="lazy" /><figcaption><span>SWEET FINISH</span><strong>Always room</strong></figcaption></figure>
+    </section>
+
+    <section class="menu-notes">
+      <div><span>DIETARY NEEDS?</span><h2>Let’s take care of you.</h2></div>
+      <p>Please tell your server about allergies or dietary preferences before ordering. Vegetarian options are available, and our team can help you find the right plate.</p>
+    </section>
+
+    <section class="menu-final">
+      <BrandMark size={220} />
+      <p>STILL DECIDING?</p>
+      <h2>Start with the<br /><em>quesabirria.</em></h2>
+      <div><button class="button button--acid" type="button" data-reserve-open>Reserve a table <span>↗</span></button><a href={site.directions} target="_blank" rel="noopener">Get directions ↗</a></div>
+    </section>
+  </main>
+
+  <footer class="digital-menu-footer">
+    <a class="brand" href="/"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <p>{site.address}</p>
+    <a href="#menu-top">Back to top ↑</a>
+  </footer>
+
+  <div class="digital-menu-mobile-bar">
+    <a href="#menu-top">Categories ↑</a>
+    <button type="button" data-reserve-open>Reserve <span>↗</span></button>
+  </div>
+
+  <ReservationDialog />
+
+  <script>
+    const search = document.querySelector<HTMLInputElement>('[data-menu-search]');
+    const items = [...document.querySelectorAll<HTMLElement>('[data-menu-item]')];
+    const groups = [...document.querySelectorAll<HTMLElement>('[data-menu-group]')];
+    const count = document.querySelector<HTMLElement>('[data-menu-count]');
+    const empty = document.querySelector<HTMLElement>('[data-menu-empty]');
+    const clearButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-menu-clear]')];
+
+    const filterMenu = () => {
+      const query = search?.value.trim().toLowerCase() ?? '';
+      let visible = 0;
+      items.forEach((item) => {
+        const matches = !query || item.dataset.search?.includes(query);
+        item.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      groups.forEach((group) => {
+        group.hidden = ![...group.querySelectorAll<HTMLElement>('[data-menu-item]')].some((item) => !item.hidden);
+      });
+      clearButtons.forEach((button) => button.hidden = !query);
+      if (count) count.textContent = `${visible} ${visible === 1 ? 'item' : 'items'}`;
+      if (empty) empty.hidden = visible !== 0;
+    };
+
+    search?.addEventListener('input', filterMenu);
+    clearButtons.forEach((button) => button.addEventListener('click', () => {
+      if (search) search.value = '';
+      filterMenu();
+      search?.focus();
+    }));
+
+    const categoryLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-category-link]')];
+    const observer = new IntersectionObserver((entries) => {
+      const active = entries.find((entry) => entry.isIntersecting);
+      if (!active) return;
+      categoryLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.categoryLink === active.target.id));
+      const current = categoryLinks.find((link) => link.classList.contains('is-active'));
+      current?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    groups.forEach((group) => observer.observe(group));
+  </script>
+</BaseLayout>
