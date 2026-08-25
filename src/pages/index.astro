@@ -39,15 +39,8 @@ const menuWidths = {
   title="Aruma Tacos & Tequila | Marshall, Minnesota"
   description="Fresh fire, fine tequila, and bold Mexican flavor in Marshall, Minnesota. Welcome to Aruma Tacos & Tequila."
 >
-  <div class="page-loader" aria-hidden="true" data-loader>
-    <div class="page-loader__brand"><BrandMark /><span>ARUMA</span></div>
-    <div class="page-loader__track"><i data-loader-line></i></div>
-    <span class="page-loader__count" data-loader-count>00</span>
-  </div>
-
   <div class="noise" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
-  <div class="cursor" aria-hidden="true" data-cursor><span>View</span></div>
 
   <Header />
 
@@ -121,7 +114,7 @@ const menuWidths = {
         </div>
       </div>
 
-      <div class="story__collage" data-cursor-label="Feel it">
+      <div class="story__collage">
         <figure class="story__image story__image--main image-reveal" data-parallax="0.08">
           <Image src={diningRoomAltImage} alt="The dining room inside Aruma in Marshall" width={1448} quality={86} loading="lazy" />
         </figure>
@@ -178,7 +171,7 @@ const menuWidths = {
       </div>
 
       <div class="menu-stage" data-menu-stage>
-        <div class="menu-stage__visual" data-cursor-label="Taste">
+        <div class="menu-stage__visual">
           {Object.entries(menu).map(([key, category], index) => (
             <figure class:list={['menu-visual', { 'is-active': index === 0 }]} data-menu-visual={key}>
               <Image src={menuImages[key as keyof typeof menuImages]} alt={category.hero.name} width={menuWidths[key as keyof typeof menuWidths]} quality={82} loading="lazy" />
@@ -231,7 +224,7 @@ const menuWidths = {
           <p data-reveal>Bright, smoky, spicy, clean. Our bar treats tequila and mezcal like the beautifully complex spirits they are.</p>
         </header>
         <div class="agave__showcase">
-          <figure class="agave__cocktail image-reveal" data-cursor-label="Sip">
+          <figure class="agave__cocktail image-reveal">
             <Image src={cocktailImage} alt="A smoky handcrafted citrus cocktail at the Aruma bar" width={1024} quality={88} loading="lazy" />
             <span class="agave__badge">SHAKEN<br />TO ORDER</span>
           </figure>

@@ -208,28 +208,6 @@ function setupCocktails() {
   });
 }
 
-function setupCursor() {
-  if (reduceMotion || !window.matchMedia('(pointer: fine)').matches) return;
-  const cursor = $('[data-cursor]') as HTMLElement | null;
-  if (!cursor) return;
-  const label = $('span', cursor);
-  const xTo = gsap.quickTo(cursor, 'x', { duration: .45, ease: 'power3' });
-  const yTo = gsap.quickTo(cursor, 'y', { duration: .45, ease: 'power3' });
-
-  window.addEventListener('pointermove', (event) => {
-    xTo(event.clientX);
-    yTo(event.clientY);
-  });
-
-  $$<HTMLElement>('[data-cursor-label]').forEach((target) => {
-    target.addEventListener('mouseenter', () => {
-      if (label) label.textContent = target.dataset.cursorLabel ?? 'View';
-      gsap.to(cursor, { autoAlpha: 1, scale: 1, duration: .3, ease: 'power3.out' });
-    });
-    target.addEventListener('mouseleave', () => gsap.to(cursor, { autoAlpha: 0, scale: .25, duration: .25 }));
-  });
-}
-
 function setupScrollMotion() {
   if (reduceMotion) return;
 
@@ -328,41 +306,24 @@ function setupProgress() {
   }, { passive: true });
 }
 
-async function playIntro() {
-  const loader = $('[data-loader]') as HTMLElement | null;
-  if (!loader) return;
-
-  if (reduceMotion) {
-    loader.remove();
-    return;
-  }
-
+async function playHeroIntro() {
+  if (reduceMotion) return;
   await document.fonts.ready;
-  const counter = $('[data-loader-count]') as HTMLElement | null;
-  const proxy = { value: 0 };
   const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   timeline
-    .to(proxy, { value: 100, duration: 1.05, ease: 'power2.inOut', onUpdate: () => {
-      if (counter) counter.textContent = Math.round(proxy.value).toString().padStart(2, '0');
-    }}, 0)
-    .to('[data-loader-line]', { scaleX: 1, duration: 1.05, ease: 'power2.inOut' }, 0)
-    .to('.page-loader__brand', { y: -18, autoAlpha: 0, duration: .35 }, 1.05)
-    .to(loader, { yPercent: -100, duration: .75, ease: 'power4.inOut' }, 1.15)
-    .from('[data-hero-media] img', { scale: 1.2, duration: 1.6, ease: 'power3.out' }, 1.55)
-    .from('.hero__title .split-line > span', { yPercent: 115, duration: 1.05, stagger: .09, ease: 'power4.out' }, 1.52)
-    .from('[data-hero-item]', { y: 24, autoAlpha: 0, duration: .75, stagger: .09 }, 1.85)
-    .from('.hero__stamp', { scale: .35, autoAlpha: 0, rotate: -20, duration: .8, ease: 'back.out(1.7)' }, 2.05)
-    .add(() => loader.remove());
+    .from('[data-hero-media] img', { scale: 1.2, duration: 1.45, ease: 'power3.out' }, 0)
+    .from('.hero__title .split-line > span', { yPercent: 115, duration: 1, stagger: .09, ease: 'power4.out' }, .05)
+    .from('[data-hero-item]', { y: 24, autoAlpha: 0, duration: .7, stagger: .09 }, .28)
+    .from('.hero__stamp', { scale: .35, autoAlpha: 0, rotate: -20, duration: .75, ease: 'back.out(1.7)' }, .42);
 }
 
 setupNavigation();
 setupDialogs();
 setupMenu();
 setupCocktails();
-setupCursor();
 setupProgress();
 setupScrollMotion();
-playIntro().then(() => ScrollTrigger.refresh());
+playHeroIntro().then(() => ScrollTrigger.refresh());
 
 window.addEventListener('load', () => ScrollTrigger.refresh());

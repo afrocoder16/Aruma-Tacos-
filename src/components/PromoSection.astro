@@ -1,107 +1,85 @@
 ---
-import { promotions } from '../data/promotions';
-
-const featured = promotions.monthly.find((promotion) => promotion.featured);
-const secondary = promotions.monthly.find((promotion) => !promotion.featured);
+import { Image } from 'astro:assets';
+import interiorImage from '../assets/images/bar.png';
+import { promotion } from '../data/promotions';
 ---
 
-<section class="promos" id="specials" aria-labelledby="promos-heading">
-  <header class="promos__header section-shell">
-    <div>
-      <p class="kicker kicker--dark" data-reveal><span>Specials at Aruma</span> Fresh reasons to stop in</p>
-      <h2 id="promos-heading" data-split>Same table.<br /><em>New reasons.</em></h2>
-    </div>
-    <div class="promos__intro" data-reveal>
-      <span>NOW SERVING</span>
-      <strong>{promotions.period}</strong>
-      <p>{promotions.intro}</p>
-    </div>
-  </header>
-
-  <div class="promos__board section-shell">
-    <article class="promos__weekly" data-reveal>
-      <header><span>WEEKLY SPECIALS</span><strong>On repeat.</strong></header>
-      <div class="promos__weekly-list" data-stagger>
-        {promotions.weekly.map((special, index) => (
-          <div class="promos__weekly-item">
-            <span class="promos__number">0{index + 1}</span>
-            <span class="promos__day">{special.day}</span>
-            <div>
-              <h3>{special.title}</h3>
-              <p>{special.offer}{'detail' in special && <small>{special.detail}</small>}</p>
-            </div>
-            <time>{special.timing}</time>
-          </div>
-        ))}
+<section class="promos" id="specials" aria-labelledby="promo-heading">
+  <article class="promo-feature section-shell" data-reveal>
+    <div class="promo-feature__copy">
+      <div class="promo-feature__topline">
+        <span><i></i>Now celebrating</span>
+        <small>August 2026 · Marshall, MN</small>
       </div>
-    </article>
 
-    {featured && (
-      <article class="promos__feature" data-reveal>
-        <span>{promotions.period} · {featured.label}</span>
-        <h3>{featured.title}</h3>
-        <p>{featured.description}</p>
-        <div class="promos__code">
-          <small>ONLINE CODE</small>
-          <strong data-promo-code>{featured.code}</strong>
-          <button type="button" data-copy-promo aria-label={`Copy promo code ${featured.code}`}><span data-copy-label>Copy</span> <i>↗</i></button>
-        </div>
-        <span class="promos__feature-mark" aria-hidden="true">20<small>%</small></span>
-      </article>
-    )}
+      <p class="promo-feature__eyebrow">{promotion.eyebrow}</p>
+      <h2 id="promo-heading">{promotion.lead}<br /><em>{promotion.accent}</em></h2>
 
-    {secondary && (
-      <article class="promos__event" data-reveal>
-        <span>ONE-NIGHT ENERGY</span>
-        <small>{secondary.label}</small>
-        <h3>{secondary.title}</h3>
-        <p>{secondary.description}</p>
-        <div aria-hidden="true"><i></i><i></i><i></i></div>
-      </article>
-    )}
-  </div>
+      <div class="promo-feature__offer">
+        <strong>{promotion.value}</strong>
+        <span>{promotion.valueLabel}</span>
+        <p>{promotion.description}</p>
+      </div>
 
-  <aside class="promos__vip section-shell" data-reveal>
-    <div><span>VIP TEXT CLUB</span><h3>{promotions.vip.title}</h3></div>
-    <p>{promotions.vip.description}</p>
-    <a href={`sms:${promotions.vip.phoneHref}?body=${promotions.vip.keyword}`}>
-      <small>TEXT</small><strong>{promotions.vip.keyword}</strong><span>TO {promotions.vip.phoneDisplay}</span><i>↗</i>
-    </a>
-  </aside>
+      <ul class="promo-feature__tags" aria-label="Promotion details">
+        {promotion.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+
+      <div class="promo-feature__actions">
+        <a href={promotion.action.href}>{promotion.action.label}<span aria-hidden="true">↗</span></a>
+        <button type="button" data-copy-promo data-code={promotion.code} aria-label={`Copy promo code ${promotion.code}`}>
+          <small>USE CODE</small>
+          <strong>{promotion.code}</strong>
+          <span data-copy-label>Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <figure class="promo-feature__visual">
+      <Image src={interiorImage} alt={promotion.imageAlt} widths={[720, 1080, 1440]} sizes="(max-width: 800px) 100vw, 55vw" loading="lazy" />
+      <div class="promo-feature__burst" aria-hidden="true">
+        <small>GRAND<br />OPENING</small>
+        <strong>{promotion.value}</strong>
+        <span>{promotion.valueLabel}</span>
+      </div>
+      <figcaption>{promotion.imageCaption}</figcaption>
+    </figure>
+
+    <div class="promo-feature__ribbon" aria-hidden="true">
+      <span>20% OFF ALL AUGUST</span><i>✦</i><span>USE CODE {promotion.code}</span><i>✦</i><span>WELCOME TO ARUMA</span>
+    </div>
+  </article>
 
   <p class="promos__copy-status" role="status" aria-live="polite" data-copy-status></p>
 </section>
 
 <script>
-  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-promo]');
-  const copyLabel = document.querySelector<HTMLElement>('[data-copy-label]');
-  const promoCode = document.querySelector<HTMLElement>('[data-promo-code]');
-  const copyStatus = document.querySelector<HTMLElement>('[data-copy-status]');
-
-  copyButton?.addEventListener('click', async () => {
-    const code = promoCode?.textContent?.trim();
-    if (!code) return;
-    if (copyLabel) copyLabel.textContent = 'Copying';
-    let copied = false;
-    try {
-      await navigator.clipboard.writeText(code);
-      copied = true;
-    } catch {
-      const field = document.createElement('textarea');
-      field.value = code;
-      field.style.position = 'fixed';
-      field.style.opacity = '0';
-      document.body.appendChild(field);
-      field.select();
-      const legacyCopy = (document as unknown as { execCommand: (command: string) => boolean }).execCommand.bind(document);
-      copied = legacyCopy('copy');
-      field.remove();
-    }
-    if (copyLabel) copyLabel.textContent = copied ? 'Copied' : 'Use code';
-    if (copyStatus) copyStatus.textContent = copied ? `${code} copied to clipboard.` : `Promo code: ${code}`;
-    window.setTimeout(() => {
-      if (copyLabel) copyLabel.textContent = 'Copy';
-      if (copyStatus) copyStatus.textContent = '';
-    }, 2200);
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-promo]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const code = button.dataset.code;
+      const label = button.querySelector<HTMLElement>('[data-copy-label]');
+      const status = document.querySelector<HTMLElement>('[data-copy-status]');
+      if (!code) return;
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(code);
+        copied = true;
+      } catch {
+        const field = document.createElement('textarea');
+        field.value = code;
+        field.style.position = 'fixed';
+        field.style.opacity = '0';
+        document.body.appendChild(field);
+        field.select();
+        copied = document.execCommand('copy');
+        field.remove();
+      }
+      if (label) label.textContent = copied ? 'Copied' : 'Use code';
+      if (status) status.textContent = copied ? `${code} copied to clipboard.` : `Promo code: ${code}`;
+      window.setTimeout(() => {
+        if (label) label.textContent = 'Copy';
+        if (status) status.textContent = '';
+      }, 2200);
+    });
   });
 </script>
