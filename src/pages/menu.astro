@@ -11,6 +11,7 @@ import fajitasImage from '../assets/images/fajitas.jpg';
 import cocktailImage from '../assets/images/aruma-cocktail.png';
 import churrosImage from '../assets/images/churros.jpg';
 
+const homeUrl = import.meta.env.BASE_URL;
 const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight', 'Churros']);
 ---
 
@@ -21,13 +22,13 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
   <div class="noise" aria-hidden="true"></div>
 
   <header class="digital-menu-header">
-    <a class="brand" href="/" aria-label="Back to Aruma home">
+    <a class="brand" href={homeUrl} aria-label="Back to Aruma home">
       <BrandMark class="brand__mark" />
       <span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span>
     </a>
     <div class="digital-menu-header__label"><i></i><span>Digital menu</span><small>Marshall · Minnesota</small></div>
     <div class="digital-menu-header__actions">
-      <a href="/">Back home</a>
+      <a href={homeUrl}>Back home</a>
       <button class="button button--copper" type="button" data-reserve-open>Reserve <span>↗</span></button>
     </div>
   </header>
@@ -126,7 +127,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
   </main>
 
   <footer class="digital-menu-footer">
-    <a class="brand" href="/"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <a class="brand" href={homeUrl}><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
     <p>{site.address}</p>
     <a href="#menu-top">Back to top ↑</a>
   </footer>

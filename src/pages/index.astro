@@ -67,6 +67,8 @@ const menuItemVisuals = {
     { image: churrosImage, width: 667, note: 'One more thing', alt: 'Warm cinnamon sugar churros' },
   ],
 } as const;
+
+const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
 ---
 
 <BaseLayout
@@ -96,7 +98,7 @@ const menuItemVisuals = {
           <p>Mexican flavor with a pulse. Come for the fire, stay for the feeling, and let one quick dinner become the whole night.</p>
           <div class="hero__actions">
             <button class="button button--copper" type="button" data-reserve-open>Reserve a table <span>↗</span></button>
-            <a class="text-link text-link--light" href="/menu-sample-two">View the full menu <span>↗</span></a>
+            <a class="text-link text-link--light" href={menuUrl}>View the full menu <span>↗</span></a>
           </div>
         </div>
       </div>
@@ -192,7 +194,7 @@ const menuItemVisuals = {
         </div>
         <div data-reveal>
           <p>A tight edit of house favorites. Tap a category and discover what your table is ordering next.</p>
-          <a class="button button--acid" href="/menu-sample-two">Open the full digital menu <span>↗</span></a>
+          <a class="button button--acid" href={menuUrl}>Open the full digital menu <span>↗</span></a>
         </div>
       </header>
 
@@ -367,14 +369,14 @@ const menuItemVisuals = {
       <a class="brand" href="#top"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
       <p>Mexican flavor with a pulse.<br />Now serving Marshall.</p>
     </div>
-    <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href="/menu-sample-two">Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
+    <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href={menuUrl}>Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
     <div class="footer__visit"><span>VISIT</span><p>900 Clarice Ave<br />Marshall, MN 56258</p><a href={site.directions} target="_blank" rel="noopener">Directions ↗</a></div>
     <div class="footer__open"><span>COME AS YOU ARE</span><button class="button button--outline-light" type="button" data-reserve-open>Reserve <span>↗</span></button></div>
     <div class="footer__bottom"><small>© {new Date().getFullYear()} Aruma Tacos &amp; Tequila</small><small>Concept photography · Replace before launch</small><a href="#top">Back to top ↑</a></div>
   </footer>
 
   <div class="mobile-booking-bar">
-    <a href="/menu-sample-two"><i></i> Full menu <b>↗</b></a>
+    <a href={menuUrl}><i></i> Full menu <b>↗</b></a>
     <button type="button" data-reserve-open>Reserve <b>↗</b></button>
   </div>
 

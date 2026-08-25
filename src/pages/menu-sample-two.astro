@@ -77,14 +77,16 @@ const picks = [
   { name: 'Fajitas Aruma', note: 'Steak · chicken · shrimp · chorizo', price: '44', image: fajitasImage, alt: 'Aruma signature fajitas' },
   { name: 'House Margarita', note: 'Blanco · lime · orange · agave', price: '10', image: margaritaImage, alt: 'Classic lime margarita' },
 ] as const;
+
+const homeUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Menu | Aruma Tacos & Tequila" description="Explore the full food and drink menu at Aruma Tacos & Tequila in Marshall, Minnesota.">
   <div class="noise" aria-hidden="true"></div>
   <header class="m2-header">
-    <a class="brand" href="/" aria-label="Aruma home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <a class="brand" href={homeUrl} aria-label="Aruma home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
     <div class="m2-header__concept"><span>45</span><p>PLATES &amp; POURS<br /><b>THE VISUAL MENU</b></p></div>
-    <nav aria-label="Menu navigation"><a href="/">Home</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
+    <nav aria-label="Menu navigation"><a href={homeUrl}>Home</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
   </header>
 
   <main class="m2" id="menu-top">
@@ -203,7 +205,7 @@ const picks = [
   </dialog>
 
   <footer class="m2-footer">
-    <a class="brand" href="/"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <a class="brand" href={homeUrl}><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
     <p>{site.address}<br />Lunch · Dinner · Late pours</p>
     <p>Temporary free-use visual references from <a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a>. Final menu photography will feature Aruma’s own plates and pours.</p>
     <a href="#menu-top">Back to top ↑</a>
