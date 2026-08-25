@@ -19,6 +19,13 @@ import diningRoomImage from '../assets/store pics/inside.png';
 import diningRoomAltImage from '../assets/store pics/inside2.png';
 import kitchenImage from '../assets/store pics/kitchen.png';
 import patioImage from '../assets/store pics/outsite.png';
+import tacoSpreadImage from '../assets/images/sample-taco-spread.jpg';
+import streetTacosImage from '../assets/images/sample-street-tacos.jpg';
+import alPastorImage from '../assets/images/sample-al-pastor.jpg';
+import palomaImage from '../assets/images/sample-paloma.jpg';
+import horchataImage from '../assets/images/sample-horchata.jpg';
+import flanImage from '../assets/images/sample-flan.jpg';
+import friedIceCreamImage from '../assets/images/sample-fried-ice-cream.jpg';
 
 const menuImages = {
   tacos: birriaImage,
@@ -33,6 +40,33 @@ const menuWidths = {
   cocktails: 1200,
   sweets: 667,
 };
+
+const menuItemVisuals = {
+  tacos: [
+    { image: streetTacosImage, width: 1200, note: 'A street classic', alt: 'Street tacos served with fresh garnishes' },
+    { image: fajitasImage, width: 1200, note: 'From the fire', alt: 'Grilled ribeye with peppers and warm tortillas' },
+    { image: alPastorImage, width: 1200, note: 'Sweet heat', alt: 'Al pastor taco with onion, cilantro, and lime' },
+    { image: tacoSpreadImage, width: 1200, note: 'Find your favorite', alt: 'A colorful flight of tacos on traditional plates' },
+  ],
+  kitchen: [
+    { image: fajitasImage, width: 1200, note: 'The house signature', alt: 'Aruma signature chicken and shrimp plate' },
+    { image: fajitasImage, width: 1200, note: 'Fire kissed', alt: 'Carne asada with blistered peppers and onions' },
+    { image: fajitasImage, width: 1200, note: 'Rich and smoky', alt: 'Chicken with chipotle cream and mushrooms' },
+    { image: tacoSpreadImage, width: 1200, note: 'Fully loaded', alt: 'A generously filled Mexican entrée' },
+  ],
+  cocktails: [
+    { image: margaritaImage, width: 1200, note: 'Bright by design', alt: 'Classic house margarita with fresh lime' },
+    { image: margaritaImage, width: 1200, note: 'Aged and polished', alt: 'Reposado margarita with citrus' },
+    { image: palomaImage, width: 1200, note: 'Smoke meets citrus', alt: 'Paloma cocktail with grapefruit garnish' },
+    { image: horchataImage, width: 1200, note: 'Dessert in a glass', alt: 'Creamy horchata drink with cinnamon' },
+  ],
+  sweets: [
+    { image: friedIceCreamImage, width: 1200, note: 'Hot meets cold', alt: 'Fried ice cream with a crisp shell and chocolate' },
+    { image: flanImage, width: 1200, note: 'Silky and slow', alt: 'Caramel flan served on a white plate' },
+    { image: churrosImage, width: 667, note: 'Save room', alt: 'A soft Mexican cake with cream and cinnamon' },
+    { image: churrosImage, width: 667, note: 'One more thing', alt: 'Warm cinnamon sugar churros' },
+  ],
+} as const;
 ---
 
 <BaseLayout
@@ -62,7 +96,7 @@ const menuWidths = {
           <p>Mexican flavor with a pulse. Come for the fire, stay for the feeling, and let one quick dinner become the whole night.</p>
           <div class="hero__actions">
             <button class="button button--copper" type="button" data-reserve-open>Reserve a table <span>↗</span></button>
-            <a class="text-link text-link--light" href="/menu">View the full menu <span>↗</span></a>
+            <a class="text-link text-link--light" href="/menu-sample-two">View the full menu <span>↗</span></a>
           </div>
         </div>
       </div>
@@ -158,7 +192,7 @@ const menuWidths = {
         </div>
         <div data-reveal>
           <p>A tight edit of house favorites. Tap a category and discover what your table is ordering next.</p>
-          <a class="button button--acid" href="/menu">Open the full digital menu <span>↗</span></a>
+          <a class="button button--acid" href="/menu-sample-two">Open the full digital menu <span>↗</span></a>
         </div>
       </header>
 
@@ -172,29 +206,45 @@ const menuWidths = {
 
       <div class="menu-stage" data-menu-stage>
         <div class="menu-stage__visual">
-          {Object.entries(menu).map(([key, category], index) => (
-            <figure class:list={['menu-visual', { 'is-active': index === 0 }]} data-menu-visual={key}>
-              <Image src={menuImages[key as keyof typeof menuImages]} alt={category.hero.name} width={menuWidths[key as keyof typeof menuWidths]} quality={82} loading="lazy" />
-              <figcaption>
-                <span>{category.hero.note}</span>
-                <h3>{category.hero.name}</h3>
-                <p>{category.hero.description}</p>
-                <b>${category.hero.price}</b>
-              </figcaption>
-            </figure>
+          {Object.entries(menu).map(([key, category], categoryIndex) => (
+            <>
+              <figure class:list={['menu-visual', { 'is-active': categoryIndex === 0 }]} data-menu-visual={`${key}:hero`}>
+                <Image src={menuImages[key as keyof typeof menuImages]} alt={category.hero.name} width={menuWidths[key as keyof typeof menuWidths]} quality={82} loading="lazy" />
+                <figcaption>
+                  <span>{category.hero.note}</span>
+                  <h3>{category.hero.name}</h3>
+                  <p>{category.hero.description}</p>
+                  <b>${category.hero.price}</b>
+                </figcaption>
+              </figure>
+              {category.items.map((item, itemIndex) => {
+                const visual = menuItemVisuals[key as keyof typeof menuItemVisuals][itemIndex];
+                return (
+                  <figure class="menu-visual" data-menu-visual={`${key}:${itemIndex}`}>
+                    <Image src={visual.image} alt={visual.alt} width={visual.width} quality={80} loading="lazy" />
+                    <figcaption>
+                      <span>{visual.note}</span>
+                      <h3>{item[0]}</h3>
+                      <p>{item[1]}</p>
+                      <b>${item[2]}</b>
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </>
           ))}
         </div>
         <div class="menu-stage__panels">
           {Object.entries(menu).map(([key, category], categoryIndex) => (
             <div class:list={['menu-panel', { 'is-active': categoryIndex === 0 }]} data-menu-panel={key}>
-              <div class="menu-panel__label"><span>HOUSE EDIT</span><small>Hover to choose</small></div>
+              <div class="menu-panel__label"><span>HOUSE EDIT</span><small>Tap or click to preview</small></div>
               {category.items.map((item, itemIndex) => (
-                <article class="menu-item">
+                <button class="menu-item" type="button" data-menu-item={`${key}:${itemIndex}`} aria-pressed="false">
                   <span>0{itemIndex + 1}</span>
                   <div><strong>{item[0]}</strong><small>{item[1]}</small></div>
                   <b>${item[2]}</b>
                   <i aria-hidden="true">↗</i>
-                </article>
+                </button>
               ))}
             </div>
           ))}
@@ -317,14 +367,14 @@ const menuWidths = {
       <a class="brand" href="#top"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
       <p>Mexican flavor with a pulse.<br />Now serving Marshall.</p>
     </div>
-    <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href="/menu">Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
+    <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href="/menu-sample-two">Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
     <div class="footer__visit"><span>VISIT</span><p>900 Clarice Ave<br />Marshall, MN 56258</p><a href={site.directions} target="_blank" rel="noopener">Directions ↗</a></div>
     <div class="footer__open"><span>COME AS YOU ARE</span><button class="button button--outline-light" type="button" data-reserve-open>Reserve <span>↗</span></button></div>
     <div class="footer__bottom"><small>© {new Date().getFullYear()} Aruma Tacos &amp; Tequila</small><small>Concept photography · Replace before launch</small><a href="#top">Back to top ↑</a></div>
   </footer>
 
   <div class="mobile-booking-bar">
-    <a href="/menu"><i></i> Full menu <b>↗</b></a>
+    <a href="/menu-sample-two"><i></i> Full menu <b>↗</b></a>
     <button type="button" data-reserve-open>Reserve <b>↗</b></button>
   </div>
 

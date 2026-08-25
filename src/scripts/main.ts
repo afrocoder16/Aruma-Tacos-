@@ -156,7 +156,12 @@ function setupMenu() {
   const tabs = $$<HTMLButtonElement>('[data-menu-tab]');
   const visuals = $$<HTMLElement>('[data-menu-visual]');
   const panels = $$<HTMLElement>('[data-menu-panel]');
+  const menuItems = $$<HTMLButtonElement>('[data-menu-item]');
   let activeKey = tabs[0]?.dataset.menuTab;
+
+  const showVisual = (visualKey: string) => {
+    visuals.forEach((visual) => visual.classList.toggle('is-active', visual.dataset.menuVisual === visualKey));
+  };
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -170,7 +175,8 @@ function setupMenu() {
         item.setAttribute('aria-selected', String(active));
       });
 
-      visuals.forEach((visual) => visual.classList.toggle('is-active', visual.dataset.menuVisual === key));
+      showVisual(`${key}:hero`);
+      menuItems.forEach((item) => { item.classList.remove('is-active'); item.setAttribute('aria-pressed', 'false'); });
       panels.forEach((panel) => {
         const active = panel.dataset.menuPanel === key;
         panel.classList.toggle('is-active', active);
@@ -178,6 +184,24 @@ function setupMenu() {
           gsap.fromTo($$('.menu-item', panel), { x: 22, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .48, stagger: .055, ease: 'power3.out' });
         }
       });
+    });
+  });
+
+  menuItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const visualKey = item.dataset.menuItem;
+      if (!visualKey) return;
+      showVisual(visualKey);
+      menuItems.forEach((menuItem) => {
+        const active = menuItem === item;
+        menuItem.classList.toggle('is-active', active);
+        menuItem.setAttribute('aria-pressed', String(active));
+      });
+      const visual = visuals.find((entry) => entry.dataset.menuVisual === visualKey);
+      if (visual && !reduceMotion) {
+        gsap.fromTo(visual.querySelector('img'), { scale: 1.045 }, { scale: 1, duration: .8, ease: 'power3.out' });
+        gsap.fromTo(visual.querySelector('figcaption'), { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: 'power3.out' });
+      }
     });
   });
 }

@@ -1,0 +1,359 @@
+---
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import ReservationDialog from '../components/ReservationDialog.astro';
+import { fullMenu, site } from '../data/site';
+import '../styles/menu-sample-two.css';
+
+import birriaImage from '../assets/images/birria.jpg';
+import fajitasImage from '../assets/images/fajitas.jpg';
+import cocktailImage from '../assets/images/aruma-cocktail.png';
+import churrosImage from '../assets/images/churros.jpg';
+import tacoSpreadImage from '../assets/images/sample-taco-spread.jpg';
+import margaritaImage from '../assets/images/sample-margarita.jpg';
+import guacamoleImage from '../assets/images/sample-guacamole.jpg';
+import streetTacosImage from '../assets/images/sample-street-tacos.jpg';
+import alPastorImage from '../assets/images/sample-al-pastor.jpg';
+import streetCornImage from '../assets/images/sample-street-corn.jpg';
+import flanImage from '../assets/images/sample-flan.jpg';
+import friedIceCreamImage from '../assets/images/sample-fried-ice-cream.jpg';
+import palomaImage from '../assets/images/sample-paloma.jpg';
+import horchataImage from '../assets/images/sample-horchata.jpg';
+
+const itemPhotoAssets = {
+  spread: tacoSpreadImage,
+  guacamole: guacamoleImage,
+  tacos: streetTacosImage,
+  alPastor: alPastorImage,
+  streetCorn: streetCornImage,
+  birria: birriaImage,
+  fajitas: fajitasImage,
+  margarita: margaritaImage,
+  paloma: palomaImage,
+  horchata: horchataImage,
+  cocktail: cocktailImage,
+  churros: churrosImage,
+  flan: flanImage,
+  friedIceCream: friedIceCreamImage,
+} as const;
+
+const itemPhotos = Object.fromEntries(await Promise.all(
+  Object.entries(itemPhotoAssets).map(async ([key, src]) => {
+    const image = await getImage({ src, width: 1200, quality: 72, format: 'webp' });
+    return [key, image.src];
+  }),
+)) as Record<keyof typeof itemPhotoAssets, string>;
+
+const getItemPhoto = (groupId: string, itemName: string) => {
+  if (itemName === 'Guacamole') return 'guacamole';
+  if (itemName === 'Street Corn') return 'streetCorn';
+  if (itemName === 'Quesabirria') return 'birria';
+  if (itemName === 'Al Pastor') return 'alPastor';
+  if (itemName === 'Smoked Paloma') return 'paloma';
+  if (itemName === 'Dirty Horchata') return 'horchata';
+  if (itemName === 'Flan') return 'flan';
+  if (itemName === 'Fried Ice Cream') return 'friedIceCream';
+  if (groupId === 'tacos') return 'tacos';
+  if (groupId === 'share') return 'spread';
+  if (groupId === 'signatures' || groupId === 'fajitas') return 'fajitas';
+  if (groupId === 'cocktails' && ['House Margarita', 'Reposado Aruma', 'Margarita Flight'].includes(itemName)) return 'margarita';
+  if (groupId === 'cocktails' || groupId === 'agave') return 'cocktail';
+  return 'churros';
+};
+
+const menuVisuals = {
+  share: { image: tacoSpreadImage, alt: 'Colorful tacos and shared plates on a wooden table', callout: 'Pass it around', featured: 'Guacamole' },
+  tacos: { image: birriaImage, alt: 'Crisped quesabirria tacos with consommé and lime', callout: 'Dip. Bite. Repeat.', featured: 'Quesabirria' },
+  signatures: { image: fajitasImage, alt: 'A sizzling skillet of steak, shrimp, and vegetables', callout: 'Born from the fire', featured: 'Aruma Special' },
+  fajitas: { image: fajitasImage, alt: 'Aruma fajitas served hot from the kitchen', callout: 'Hear them coming', featured: 'Fajitas Aruma' },
+  cocktails: { image: margaritaImage, alt: 'A classic margarita with a salted rim and fresh lime', callout: 'Bright by design', featured: 'House Margarita' },
+  agave: { image: cocktailImage, alt: 'A handcrafted smoky citrus cocktail at Aruma', callout: 'Sip with intention', featured: 'Vida Oaxaca' },
+  sweets: { image: churrosImage, alt: 'Warm cinnamon sugar churros with dipping sauces', callout: 'There is always room', featured: 'Churros' },
+} as const;
+
+const picks = [
+  { name: 'Quesabirria', note: 'Slow-braised · molten cheese · consommé', price: '18', image: birriaImage, alt: 'Aruma quesabirria tacos' },
+  { name: 'Fajitas Aruma', note: 'Steak · chicken · shrimp · chorizo', price: '44', image: fajitasImage, alt: 'Aruma signature fajitas' },
+  { name: 'House Margarita', note: 'Blanco · lime · orange · agave', price: '10', image: margaritaImage, alt: 'Classic lime margarita' },
+] as const;
+---
+
+<BaseLayout title="Menu | Aruma Tacos & Tequila" description="Explore the full food and drink menu at Aruma Tacos & Tequila in Marshall, Minnesota.">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="m2-header">
+    <a class="brand" href="/" aria-label="Aruma home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <div class="m2-header__concept"><span>45</span><p>PLATES &amp; POURS<br /><b>THE VISUAL MENU</b></p></div>
+    <nav aria-label="Menu navigation"><a href="/">Home</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
+  </header>
+
+  <main class="m2" id="menu-top">
+    <section class="m2-hero">
+      <div class="m2-hero__copy">
+        <p><span>ARUMA · MARSHALL, MINNESOTA</span><i></i>THE VISUAL MENU</p>
+        <h1>Pick your<br /><em>craving.</em></h1>
+        <div class="m2-hero__intro"><span>01</span><p>Fire-kissed plates, bright agave pours, and the dishes everyone reaches across the table for.</p></div>
+        <a href="#full-menu">Start exploring <i>↓</i></a>
+      </div>
+      <div class="m2-hero__collage">
+        <figure class="m2-hero__image m2-hero__image--main">
+          <Image src={tacoSpreadImage} alt="A colorful spread of tacos on traditional plates" widths={[600, 900, 1200]} sizes="(max-width: 800px) 100vw, 58vw" quality={68} loading="eager" />
+          <figcaption><span>THE TABLE STARTS HERE</span><strong>Pass everything.</strong></figcaption>
+        </figure>
+        <figure class="m2-hero__image m2-hero__image--small"><Image src={margaritaImage} alt="A salt-rimmed margarita with fresh lime" width={540} quality={64} loading="eager" /><figcaption>POUR NO. 01</figcaption></figure>
+        <div class="m2-hero__seal" aria-hidden="true"><small>FRESH FIRE</small><strong>45</strong><span>PLATES &amp; POURS</span></div>
+      </div>
+    </section>
+
+    <section class="m2-search" aria-label="Search and browse the menu">
+      <div><label for="m2-menu-search">What are you hungry for?</label><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input id="m2-menu-search" type="search" placeholder="Search tacos, shrimp, mezcal…" autocomplete="off" data-m2-search /><button type="button" data-m2-clear hidden>Clear</button></span></div>
+      <p><strong data-m2-count>{fullMenu.reduce((total, group) => total + group.items.length, 0)}</strong><span>things worth<br />ordering</span></p>
+    </section>
+
+    <nav class="m2-categories" aria-label="Menu categories"><span>JUMP TO</span><div>{fullMenu.map((group, index) => (<a class:list={{ 'is-active': index === 0 }} href={'#m2-' + group.id} data-m2-category={group.id}><small>{String(index + 1).padStart(2, '0')}</small>{group.category}</a>))}</div></nav>
+
+    <section class="m2-picks" aria-labelledby="m2-picks-heading">
+      <header><p><span>ARUMA’S SHORTLIST</span> Don’t overthink it</p><h2 id="m2-picks-heading">Three very<br /><em>good ideas.</em></h2></header>
+      <div class="m2-picks__grid">
+        {picks.map((pick, index) => (
+          <article>
+            <figure><Image src={pick.image} alt={pick.alt} widths={[480, 720, 960]} sizes="(max-width: 700px) 100vw, 33vw" quality={70} loading="lazy" /><span>0{index + 1}</span></figure>
+            <div><small>ARUMA PICK</small><h3>{pick.name}</h3><p>{pick.note}</p></div>
+            <strong>{'$'}{pick.price}</strong>
+            <button type="button" data-m2-save data-item={pick.name} data-price={pick.price} aria-pressed="false"><span>＋</span> Add to cart</button>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <div class="m2-menu" id="full-menu">
+      {fullMenu.map((group, groupIndex) => {
+        const visual = menuVisuals[group.id as keyof typeof menuVisuals];
+        return (
+          <section class:list={['m2-group', { 'm2-group--reverse': groupIndex % 2 === 1, 'm2-group--dark': group.id === 'cocktails' || group.id === 'agave' }]} id={'m2-' + group.id} data-m2-group>
+            <figure class="m2-group__visual">
+              <Image src={visual.image} alt={visual.alt} widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 47vw" quality={68} loading="lazy" />
+              <figcaption><span>{visual.callout}</span><strong>{visual.featured}</strong></figcaption><i aria-hidden="true">{String(groupIndex + 1).padStart(2, '0')}</i>
+            </figure>
+            <div class="m2-group__menu">
+              <header><span>{String(groupIndex + 1).padStart(2, '0')} · {group.note}</span><h2>{group.category}</h2><p>{group.id === 'tacos' ? 'Three per order · rice · beans · verde · picante' : group.id === 'cocktails' ? 'Fresh citrus · premium pours · shaken to order' : 'Built fresh and meant to be shared.'}</p></header>
+              <div class="m2-group__items">
+                {group.items.map((item) => {
+                  const photoKey = getItemPhoto(group.id, item[0]);
+                  return (
+                    <article
+                      data-m2-item
+                      data-search={[item[0], item[1], group.category].join(' ').toLowerCase()}
+                      data-image={itemPhotos[photoKey]}
+                      data-name={item[0]}
+                      data-description={item[1]}
+                      data-price={item[2]}
+                      data-category={group.category}
+                    >
+                      <button class="m2-item__select" type="button" data-m2-view aria-label={`View ${item[0]}`}>
+                        <span class="m2-item__thumb"><img src={itemPhotos[photoKey]} alt="" loading="lazy" /></span>
+                        <span class="m2-item__copy"><span>View dish</span><h3>{item[0]}</h3><p>{item[1]}</p></span>
+                        <strong>{'$'}{item[2]}</strong>
+                        <i aria-hidden="true">↗</i>
+                      </button>
+                      <button class="m2-item__save" type="button" data-m2-save data-item={item[0]} data-price={item[2]} aria-pressed="false" aria-label={`Add ${item[0]} to cart`}><span>＋</span></button>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <section class="m2-empty" hidden data-m2-empty><span>NO MATCH YET</span><h2>Try another craving.</h2><p>Search by dish, ingredient, or category.</p><button type="button" data-m2-clear>Clear search</button></section>
+    <section class="m2-last-call"><div><span>ONE LAST THING</span><h2>Your table is<br /><em>waiting.</em></h2><p>Come hungry. Bring people you like. We’ll handle the rest.</p><div><button type="button" data-reserve-open>Reserve a table <span>↗</span></button><a href={site.directions} target="_blank" rel="noopener">Find Aruma ↗</a></div></div><figure><Image src={birriaImage} alt="Quesabirria tacos ready to share" width={1500} quality={84} loading="lazy" /></figure></section>
+  </main>
+
+  <aside class="m2-shortlist" data-m2-shortlist aria-live="polite">
+    <div><span data-m2-saved-count>0</span><p>YOUR TABLE<br /><strong>ORDER</strong></p></div>
+    <p data-m2-saved-label>Your cart is ready.</p>
+    <strong data-m2-cart-total>$0</strong>
+    <button type="button" data-m2-cart-open>View cart <span>↗</span></button>
+  </aside>
+
+  <dialog class="m2-dish" data-m2-dish-dialog aria-labelledby="m2-dish-name">
+    <button class="m2-dish__close" type="button" data-m2-dish-close aria-label="Close dish details">Close <span>×</span></button>
+    <div class="m2-dish__photo"><img src={itemPhotos.guacamole} alt="" data-m2-dish-image /><span>VISUAL MENU · TAP TO CHOOSE</span><i data-m2-dish-price>$12</i></div>
+    <div class="m2-dish__details">
+      <p><span data-m2-dish-category>For the table</span><i></i>ARUMA MENU</p>
+      <h2 id="m2-dish-name" data-m2-dish-name>Guacamole</h2>
+      <p data-m2-dish-description>Avocado · pico · lime · warm chips</p>
+      <div><button type="button" data-m2-dialog-save data-item="Guacamole" data-price="12"><span>＋</span> Add to cart</button><small>Add it now, then keep exploring the menu.</small></div>
+    </div>
+    <div class="m2-dish__hint">Choose another dish from the menu to change this view.</div>
+  </dialog>
+
+  <dialog class="m2-cart" data-m2-cart-dialog aria-labelledby="m2-cart-title">
+    <header><div><span>YOUR TABLE · ARUMA</span><h2 id="m2-cart-title">Your cart.</h2></div><button type="button" data-m2-cart-close aria-label="Close cart">×</button></header>
+    <div class="m2-cart__items" data-m2-cart-items></div>
+    <div class="m2-cart__empty" data-m2-cart-empty><span>NOTHING HERE YET</span><p>Choose a plate or pour<br />to start your order.</p></div>
+    <footer>
+      <div><span>Estimated subtotal</span><strong data-m2-cart-drawer-total>$0</strong></div>
+      <p>Taxes and any ordering fees are calculated at checkout.</p>
+      <button type="button" data-m2-cart-review>Review order <span>↗</span></button>
+      <button type="button" data-m2-cart-clear>Clear cart</button>
+    </footer>
+  </dialog>
+
+  <footer class="m2-footer">
+    <a class="brand" href="/"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <p>{site.address}<br />Lunch · Dinner · Late pours</p>
+    <p>Temporary free-use visual references from <a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a>. Final menu photography will feature Aruma’s own plates and pours.</p>
+    <a href="#menu-top">Back to top ↑</a>
+  </footer>
+  <ReservationDialog />
+
+  <script>
+    const search = document.querySelector<HTMLInputElement>('[data-m2-search]');
+    const items = [...document.querySelectorAll<HTMLElement>('[data-m2-item]')];
+    const groups = [...document.querySelectorAll<HTMLElement>('[data-m2-group]')];
+    const count = document.querySelector<HTMLElement>('[data-m2-count]');
+    const empty = document.querySelector<HTMLElement>('[data-m2-empty]');
+    const clearButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-m2-clear]')];
+
+    const filterMenu = () => {
+      const query = search?.value.trim().toLowerCase() ?? '';
+      let visible = 0;
+      items.forEach((item) => { const matches = !query || item.dataset.search?.includes(query); item.hidden = !matches; if (matches) visible += 1; });
+      groups.forEach((group) => group.hidden = ![...group.querySelectorAll<HTMLElement>('[data-m2-item]')].some((item) => !item.hidden));
+      clearButtons.forEach((button) => button.hidden = !query);
+      if (count) count.textContent = String(visible);
+      if (empty) empty.hidden = visible !== 0;
+    };
+    search?.addEventListener('input', filterMenu);
+    clearButtons.forEach((button) => button.addEventListener('click', () => { if (search) search.value = ''; filterMenu(); search?.focus(); }));
+
+    const cart = new Map<string, { name: string; price: number; quantity: number }>();
+    const saveButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-m2-save]')];
+    const savedCount = document.querySelector<HTMLElement>('[data-m2-saved-count]');
+    const savedLabel = document.querySelector<HTMLElement>('[data-m2-saved-label]');
+    const shortlist = document.querySelector<HTMLElement>('[data-m2-shortlist]');
+    const cartTotal = document.querySelector<HTMLElement>('[data-m2-cart-total]');
+    const cartDrawerTotal = document.querySelector<HTMLElement>('[data-m2-cart-drawer-total]');
+    const cartItems = document.querySelector<HTMLElement>('[data-m2-cart-items]');
+    const cartEmpty = document.querySelector<HTMLElement>('[data-m2-cart-empty]');
+    const cartDialog = document.querySelector<HTMLDialogElement>('[data-m2-cart-dialog]');
+    let cartIntroduced = false;
+
+    const itemKey = (name: string, price: string | number) => `${name}|${price}`;
+    const renderCart = () => {
+      const entries = [...cart.entries()];
+      const itemCount = entries.reduce((total, [, item]) => total + item.quantity, 0);
+      const subtotal = entries.reduce((total, [, item]) => total + item.price * item.quantity, 0);
+      if (savedCount) savedCount.textContent = String(itemCount);
+      if (savedLabel) savedLabel.textContent = entries.length ? entries.slice(0, 2).map(([, item]) => `${item.name} ×${item.quantity}`).join(' · ') : 'Your cart is ready.';
+      if (cartTotal) cartTotal.textContent = `$${subtotal}`;
+      if (cartDrawerTotal) cartDrawerTotal.textContent = `$${subtotal}`;
+      shortlist?.classList.toggle('has-items', itemCount > 0);
+      if (cartEmpty) cartEmpty.hidden = itemCount > 0;
+      if (cartItems) {
+        cartItems.innerHTML = entries.map(([key, item], index) => `
+          <article>
+            <span>${String(index + 1).padStart(2, '0')}</span>
+            <div><h3>${item.name}</h3><p>$${item.price} each</p><button type="button" data-cart-action="remove" data-cart-key="${encodeURIComponent(key)}">Remove</button></div>
+            <div class="m2-cart__quantity"><button type="button" data-cart-action="decrease" data-cart-key="${encodeURIComponent(key)}" aria-label="Decrease ${item.name}">−</button><strong>${item.quantity}</strong><button type="button" data-cart-action="increase" data-cart-key="${encodeURIComponent(key)}" aria-label="Increase ${item.name}">＋</button></div>
+            <strong>$${item.price * item.quantity}</strong>
+          </article>`).join('');
+      }
+      saveButtons.forEach((button) => {
+        const key = itemKey(button.dataset.item ?? '', button.dataset.price ?? '');
+        const quantity = cart.get(key)?.quantity ?? 0;
+        button.setAttribute('aria-pressed', String(quantity > 0));
+        const icon = button.querySelector('span');
+        if (icon) icon.textContent = quantity ? String(quantity) : '＋';
+        if (!button.classList.contains('m2-item__save')) {
+          button.lastChild && (button.lastChild.textContent = quantity ? ` In cart · add another` : ' Add to cart');
+        }
+      });
+      const activeDialogButton = document.querySelector<HTMLButtonElement>('[data-m2-dialog-save]');
+      if (activeDialogButton) {
+        const key = itemKey(activeDialogButton.dataset.item ?? '', activeDialogButton.dataset.price ?? '');
+        const quantity = cart.get(key)?.quantity ?? 0;
+        activeDialogButton.classList.toggle('is-saved', quantity > 0);
+        activeDialogButton.innerHTML = `<span>${quantity || '＋'}</span>${quantity ? 'In cart · add another' : 'Add to cart'}`;
+      }
+    };
+    const openCart = () => { if (!cartDialog?.open) cartDialog?.showModal(); document.body.classList.add('m2-dialog-open'); };
+    const addToCart = (name: string, priceValue: string, introduce = true) => {
+      const price = Number(priceValue);
+      const key = itemKey(name, priceValue);
+      const existing = cart.get(key);
+      cart.set(key, { name, price, quantity: (existing?.quantity ?? 0) + 1 });
+      renderCart();
+      if (introduce && !cartIntroduced) { cartIntroduced = true; window.setTimeout(openCart, 180); }
+    };
+    saveButtons.forEach((button) => button.addEventListener('click', () => addToCart(button.dataset.item ?? '', button.dataset.price ?? '0')));
+    document.querySelector('[data-m2-cart-open]')?.addEventListener('click', openCart);
+    document.querySelector('[data-m2-cart-close]')?.addEventListener('click', () => cartDialog?.close());
+    document.querySelector('[data-m2-cart-clear]')?.addEventListener('click', () => { cart.clear(); renderCart(); });
+    cartDialog?.addEventListener('click', (event) => { if (event.target === cartDialog) cartDialog.close(); });
+    cartDialog?.addEventListener('close', () => document.body.classList.remove('m2-dialog-open'));
+    cartItems?.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-cart-action]');
+      if (!button) return;
+      const key = decodeURIComponent(button.dataset.cartKey ?? '');
+      const item = cart.get(key);
+      if (!item) return;
+      if (button.dataset.cartAction === 'increase') item.quantity += 1;
+      if (button.dataset.cartAction === 'decrease') item.quantity -= 1;
+      if (button.dataset.cartAction === 'remove' || item.quantity <= 0) cart.delete(key);
+      renderCart();
+    });
+
+    const dishDialog = document.querySelector<HTMLDialogElement>('[data-m2-dish-dialog]');
+    const dishImage = document.querySelector<HTMLImageElement>('[data-m2-dish-image]');
+    const dishName = document.querySelector<HTMLElement>('[data-m2-dish-name]');
+    const dishDescription = document.querySelector<HTMLElement>('[data-m2-dish-description]');
+    const dishCategory = document.querySelector<HTMLElement>('[data-m2-dish-category]');
+    const dishPrice = document.querySelector<HTMLElement>('[data-m2-dish-price]');
+    const dialogSave = document.querySelector<HTMLButtonElement>('[data-m2-dialog-save]');
+
+    const syncDialogSave = () => {
+      if (!dialogSave) return;
+      const item = dialogSave.dataset.item ?? '';
+      const quantity = cart.get(itemKey(item, dialogSave.dataset.price ?? ''))?.quantity ?? 0;
+      dialogSave.classList.toggle('is-saved', quantity > 0);
+      dialogSave.innerHTML = `<span>${quantity || '＋'}</span>${quantity ? 'In cart · add another' : 'Add to cart'}`;
+    };
+
+    items.forEach((item) => item.querySelector('[data-m2-view]')?.addEventListener('click', () => {
+      const { image, name, description, price, category } = item.dataset;
+      if (dishImage && image) { dishImage.src = image; dishImage.alt = `${name ?? 'Selected dish'} — visual reference`; }
+      if (dishName) dishName.textContent = name ?? '';
+      if (dishDescription) dishDescription.textContent = description ?? '';
+      if (dishCategory) dishCategory.textContent = category ?? '';
+      if (dishPrice) dishPrice.textContent = `$${price ?? ''}`;
+      if (dialogSave) { dialogSave.dataset.item = name ?? ''; dialogSave.dataset.price = price ?? ''; }
+      syncDialogSave();
+      dishDialog?.showModal();
+      document.body.classList.add('m2-dialog-open');
+    }));
+    document.querySelector('[data-m2-dish-close]')?.addEventListener('click', () => dishDialog?.close());
+    dishDialog?.addEventListener('click', (event) => { if (event.target === dishDialog) dishDialog.close(); });
+    dishDialog?.addEventListener('close', () => document.body.classList.remove('m2-dialog-open'));
+    dialogSave?.addEventListener('click', () => {
+      const item = dialogSave.dataset.item;
+      if (!item) return;
+      addToCart(item, dialogSave.dataset.price ?? '0', false);
+      dishDialog?.close();
+      window.setTimeout(openCart, 180);
+    });
+
+    const categoryLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-m2-category]')];
+    const observer = new IntersectionObserver((entries) => {
+      const active = entries.find((entry) => entry.isIntersecting);
+      if (!active) return;
+      const id = active.target.id.replace('m2-', '');
+      categoryLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.m2Category === id));
+      categoryLinks.find((link) => link.classList.contains('is-active'))?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    groups.forEach((group) => observer.observe(group));
+  </script>
+</BaseLayout>
