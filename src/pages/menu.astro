@@ -12,6 +12,7 @@ import cocktailImage from '../assets/images/aruma-cocktail.png';
 import churrosImage from '../assets/images/churros.jpg';
 
 const homeUrl = import.meta.env.BASE_URL;
+const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
 const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight', 'Churros']);
 ---
 
@@ -29,6 +30,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
     <div class="digital-menu-header__label"><i></i><span>Digital menu</span><small>Marshall · Minnesota</small></div>
     <div class="digital-menu-header__actions">
       <a href={homeUrl}>Back home</a>
+      <a href={sampleMenuUrl}>Menu Two</a>
       <button class="button button--copper" type="button" data-reserve-open>Reserve <span>↗</span></button>
     </div>
   </header>
@@ -39,6 +41,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
         <p class="kicker kicker--dark"><span>Fresh from the kitchen</span> The full spread</p>
         <h1><span>The</span><em>menu.</em></h1>
         <p>Start with something for the table, find your favorite taco, and leave room for one last round.</p>
+        <a class="digital-menu-hero__alternate" href={sampleMenuUrl}>Want the visual experience? <strong>Explore Menu Two</strong> <span>↗</span></a>
         <div class="digital-menu-hero__details">
           <div><span>LOCATION</span><strong>Marshall, MN</strong></div>
           <div><span>SERVING</span><strong>Lunch &amp; dinner</strong></div>

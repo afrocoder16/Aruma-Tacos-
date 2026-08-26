@@ -10,5 +10,5 @@ export const promotion = {
   tags: ['All August', 'Online orders', 'Limited time'],
   imageAlt: 'The illuminated tequila bar inside Aruma',
   imageCaption: 'Marshall, meet your new favorite table.',
-  action: { label: 'Order online', href: 'menu-sample-two' },
+  action: { label: 'Order online', href: 'menu' },
 } as const;

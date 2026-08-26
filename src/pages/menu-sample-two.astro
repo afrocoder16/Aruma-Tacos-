@@ -79,6 +79,7 @@ const picks = [
 ] as const;
 
 const homeUrl = import.meta.env.BASE_URL;
+const menuOneUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
 ---
 
 <BaseLayout title="Menu | Aruma Tacos & Tequila" description="Explore the full food and drink menu at Aruma Tacos & Tequila in Marshall, Minnesota.">
@@ -86,7 +87,7 @@ const homeUrl = import.meta.env.BASE_URL;
   <header class="m2-header">
     <a class="brand" href={homeUrl} aria-label="Aruma home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
     <div class="m2-header__concept"><span>45</span><p>PLATES &amp; POURS<br /><b>THE VISUAL MENU</b></p></div>
-    <nav aria-label="Menu navigation"><a href={homeUrl}>Home</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
+    <nav aria-label="Menu navigation"><a href={homeUrl}>Home</a><a href={menuOneUrl}>Menu One</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
   </header>
 
   <main class="m2" id="menu-top">

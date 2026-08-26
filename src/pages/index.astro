@@ -68,7 +68,8 @@ const menuItemVisuals = {
   ],
 } as const;
 
-const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
+const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
+const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
 ---
 
 <BaseLayout
@@ -194,7 +195,10 @@ const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`
         </div>
         <div data-reveal>
           <p>A tight edit of house favorites. Tap a category and discover what your table is ordering next.</p>
-          <a class="button button--acid" href={menuUrl}>Open the full digital menu <span>↗</span></a>
+          <div class="menu-section__actions">
+            <a class="button button--acid" href={menuUrl}>Open Menu One <span>↗</span></a>
+            <a class="text-link text-link--light" href={sampleMenuUrl}>See Menu Two <span>↗</span></a>
+          </div>
         </div>
       </header>
 
@@ -326,16 +330,16 @@ const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`
         <h2 class="display-heading display-heading--green" data-split>Meet us in<br /><em>Marshall.</em></h2>
       </header>
       <div class="visit__grid">
-        <a class="visit__map" href={site.directions} target="_blank" rel="noopener" aria-label="Get directions to Aruma">
-          <svg viewBox="0 0 900 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g class="map-roads"><path d="M-80 130c180-80 290 85 470 0s315-60 560 80"></path><path d="M-50 405c170-100 320 40 500-45s300-30 500 30"></path><path d="M200-50c60 175-15 290 90 430s25 195 95 310"></path><path d="M665-50c-80 180 50 300-20 440s35 185-25 300"></path></g>
-            <g class="map-minor"><path d="M-20 260c165-42 280 75 455 5s315-35 500 45"></path><path d="M70-20c110 160 40 300 115 445s35 160 65 240"></path><path d="M790-20c-90 170-10 270-65 430s5 170-25 250"></path></g>
-          </svg>
-          <span class="visit__pin"><BrandMark /></span>
-          <span class="visit__road visit__road--one">CLARICE AVE</span>
-          <span class="visit__road visit__road--two">HWY 23</span>
-          <span class="visit__directions">Get directions <b>↗</b></span>
-        </a>
+        <div class="visit__map">
+          <iframe
+            src={site.mapEmbed}
+            title="Google Map showing Aruma Tacos & Tequila at 900 Clarice Avenue in Marshall, Minnesota"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <a class="visit__directions" href={site.directions} target="_blank" rel="noopener">Open in Google Maps <b>↗</b></a>
+        </div>
         <div class="visit__details">
           <div class="visit__status"><i></i><span>NOW OPEN</span></div>
           <div class="visit__block">
