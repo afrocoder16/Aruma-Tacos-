@@ -26,7 +26,7 @@ import { promotion } from '../data/promotions';
       </ul>
 
       <div class="promo-feature__actions">
-        <a href={promotion.action.href}>{promotion.action.label}<span aria-hidden="true">↗</span></a>
+        <a href={promotion.action.href}>{promotion.action.label}<span class="icon-arrow-up-right" aria-hidden="true"></span></a>
         <button type="button" data-copy-promo data-code={promotion.code} aria-label={`Copy promo code ${promotion.code}`}>
           <small>USE CODE</small>
           <strong>{promotion.code}</strong>
@@ -65,14 +65,7 @@ import { promotion } from '../data/promotions';
         await navigator.clipboard.writeText(code);
         copied = true;
       } catch {
-        const field = document.createElement('textarea');
-        field.value = code;
-        field.style.position = 'fixed';
-        field.style.opacity = '0';
-        document.body.appendChild(field);
-        field.select();
-        copied = document.execCommand('copy');
-        field.remove();
+        copied = false;
       }
       if (label) label.textContent = copied ? 'Copied' : 'Use code';
       if (status) status.textContent = copied ? `${code} copied to clipboard.` : `Promo code: ${code}`;

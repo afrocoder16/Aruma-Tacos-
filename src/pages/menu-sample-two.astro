@@ -82,12 +82,12 @@ const homeUrl = import.meta.env.BASE_URL;
 const menuOneUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
 ---
 
-<BaseLayout title="Menu | Aruma Tacos & Tequila" description="Explore the full food and drink menu at Aruma Tacos & Tequila in Marshall, Minnesota.">
+<BaseLayout title="Menu Sample Two | Aruma Tacos & Tequila" description="An alternate interactive menu concept for Aruma Tacos & Tequila in Marshall, Minnesota." noindex={true}>
   <div class="noise" aria-hidden="true"></div>
   <header class="m2-header">
-    <a class="brand" href={homeUrl} aria-label="Aruma home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
+    <a class="brand" href={homeUrl} aria-label="Aruma Tacos & Tequila home"><BrandMark class="brand__mark" /><span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span></a>
     <div class="m2-header__concept"><span>45</span><p>PLATES &amp; POURS<br /><b>THE VISUAL MENU</b></p></div>
-    <nav aria-label="Menu navigation"><a href={homeUrl}>Home</a><a href={menuOneUrl}>Menu One</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span>↗</span></button></nav>
+    <nav aria-label="Menu navigation"><a href={homeUrl}>Home</a><a href={menuOneUrl}>Menu One</a><a href="#full-menu">Explore menu</a><button type="button" data-reserve-open>Reserve <span class="icon-arrow-up-right" aria-hidden="true"></span></button></nav>
   </header>
 
   <main class="m2" id="menu-top">
@@ -157,7 +157,7 @@ const menuOneUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
                         <span class="m2-item__thumb"><img src={itemPhotos[photoKey]} alt="" loading="lazy" /></span>
                         <span class="m2-item__copy"><span>View dish</span><h3>{item[0]}</h3><p>{item[1]}</p></span>
                         <strong>{'$'}{item[2]}</strong>
-                        <i aria-hidden="true">↗</i>
+                        <i class="icon-arrow-up-right" aria-hidden="true"></i>
                       </button>
                       <button class="m2-item__save" type="button" data-m2-save data-item={item[0]} data-price={item[2]} aria-pressed="false" aria-label={`Add ${item[0]} to cart`}><span>＋</span></button>
                     </article>
@@ -171,14 +171,14 @@ const menuOneUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
     </div>
 
     <section class="m2-empty" hidden data-m2-empty><span>NO MATCH YET</span><h2>Try another craving.</h2><p>Search by dish, ingredient, or category.</p><button type="button" data-m2-clear>Clear search</button></section>
-    <section class="m2-last-call"><div><span>ONE LAST THING</span><h2>Your table is<br /><em>waiting.</em></h2><p>Come hungry. Bring people you like. We’ll handle the rest.</p><div><button type="button" data-reserve-open>Reserve a table <span>↗</span></button><a href={site.directions} target="_blank" rel="noopener">Find Aruma ↗</a></div></div><figure><Image src={birriaImage} alt="Quesabirria tacos ready to share" width={1500} quality={84} loading="lazy" /></figure></section>
+    <section class="m2-last-call"><div><span>ONE LAST THING</span><h2>Your table is<br /><em>waiting.</em></h2><p>Come hungry. Bring people you like. We’ll handle the rest.</p><div><button type="button" data-reserve-open>Reserve a table <span class="icon-arrow-up-right" aria-hidden="true"></span></button><a href={site.directions} target="_blank" rel="noopener">Find Aruma <span class="icon-arrow-up-right" aria-hidden="true"></span></a></div></div><figure><Image src={birriaImage} alt="Quesabirria tacos ready to share" width={1500} quality={84} loading="lazy" /></figure></section>
   </main>
 
   <aside class="m2-shortlist" data-m2-shortlist aria-live="polite">
     <div><span data-m2-saved-count>0</span><p>YOUR TABLE<br /><strong>ORDER</strong></p></div>
     <p data-m2-saved-label>Your cart is ready.</p>
     <strong data-m2-cart-total>$0</strong>
-    <button type="button" data-m2-cart-open>View cart <span>↗</span></button>
+    <button type="button" data-m2-cart-open>View cart <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
   </aside>
 
   <dialog class="m2-dish" data-m2-dish-dialog aria-labelledby="m2-dish-name">
@@ -200,7 +200,7 @@ const menuOneUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
     <footer>
       <div><span>Estimated subtotal</span><strong data-m2-cart-drawer-total>$0</strong></div>
       <p>Taxes and any ordering fees are calculated at checkout.</p>
-      <button type="button" data-m2-cart-review>Review order <span>↗</span></button>
+      <button type="button" data-m2-cart-review>Review order <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
       <button type="button" data-m2-cart-clear>Clear cart</button>
     </footer>
   </dialog>

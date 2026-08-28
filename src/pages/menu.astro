@@ -6,13 +6,12 @@ import ReservationDialog from '../components/ReservationDialog.astro';
 import { fullMenu, site } from '../data/site';
 import '../styles/menu.css';
 
-import birriaImage from '../assets/images/birria.jpg';
+import birriaImage from '../assets/images/menu/Quesabirria.png';
 import fajitasImage from '../assets/images/fajitas.jpg';
-import cocktailImage from '../assets/images/aruma-cocktail.png';
-import churrosImage from '../assets/images/churros.jpg';
+import cocktailImage from '../assets/images/menu/house margarita.png';
+import tresLechesImage from '../assets/images/menu/Tres Leches AI.png';
 
 const homeUrl = import.meta.env.BASE_URL;
-const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
 const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight', 'Churros']);
 ---
 
@@ -23,15 +22,14 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
   <div class="noise" aria-hidden="true"></div>
 
   <header class="digital-menu-header">
-    <a class="brand" href={homeUrl} aria-label="Back to Aruma home">
+    <a class="brand" href={homeUrl}>
       <BrandMark class="brand__mark" />
       <span class="brand__type"><b>ARUMA</b><small>TACOS &amp; TEQUILA</small></span>
     </a>
     <div class="digital-menu-header__label"><i></i><span>Digital menu</span><small>Marshall · Minnesota</small></div>
     <div class="digital-menu-header__actions">
       <a href={homeUrl}>Back home</a>
-      <a href={sampleMenuUrl}>Menu Two</a>
-      <button class="button button--copper" type="button" data-reserve-open>Reserve <span>↗</span></button>
+      <button class="button button--copper" type="button" data-reserve-open>Reserve <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
     </div>
   </header>
 
@@ -41,7 +39,6 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
         <p class="kicker kicker--dark"><span>Fresh from the kitchen</span> The full spread</p>
         <h1><span>The</span><em>menu.</em></h1>
         <p>Start with something for the table, find your favorite taco, and leave room for one last round.</p>
-        <a class="digital-menu-hero__alternate" href={sampleMenuUrl}>Want the visual experience? <strong>Explore Menu Two</strong> <span>↗</span></a>
         <div class="digital-menu-hero__details">
           <div><span>LOCATION</span><strong>Marshall, MN</strong></div>
           <div><span>SERVING</span><strong>Lunch &amp; dinner</strong></div>
@@ -113,7 +110,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
     <section class="menu-gallery" aria-label="Aruma menu favorites">
       <figure><Image src={fajitasImage} alt="Sizzling Aruma fajitas" width={1300} quality={83} loading="lazy" /><figcaption><span>FROM THE FIRE</span><strong>Fajitas Aruma</strong></figcaption></figure>
       <figure><Image src={cocktailImage} alt="A handcrafted citrus cocktail" width={900} quality={84} loading="lazy" /><figcaption><span>FROM THE BAR</span><strong>Shaken fresh</strong></figcaption></figure>
-      <figure><Image src={churrosImage} alt="Warm cinnamon churros" width={667} quality={84} loading="lazy" /><figcaption><span>SWEET FINISH</span><strong>Always room</strong></figcaption></figure>
+      <figure><Image src={tresLechesImage} alt="Tres Leches cake topped with whipped cream, cinnamon, and strawberries" width={1448} quality={84} loading="lazy" /><figcaption><span>SWEET FINISH</span><strong>Tres Leches</strong></figcaption></figure>
     </section>
 
     <section class="menu-notes">
@@ -125,7 +122,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
       <BrandMark size={220} />
       <p>STILL DECIDING?</p>
       <h2>Start with the<br /><em>quesabirria.</em></h2>
-      <div><button class="button button--acid" type="button" data-reserve-open>Reserve a table <span>↗</span></button><a href={site.directions} target="_blank" rel="noopener">Get directions ↗</a></div>
+      <div><button class="button button--acid" type="button" data-reserve-open>Reserve a table <span class="icon-arrow-up-right" aria-hidden="true"></span></button><a href={site.directions} target="_blank" rel="noopener">Get directions <span class="icon-arrow-up-right" aria-hidden="true"></span></a></div>
     </section>
   </main>
 
@@ -137,7 +134,7 @@ const featuredItems = new Set(['Quesabirria', 'Fajitas Aruma', 'Margarita Flight
 
   <div class="digital-menu-mobile-bar">
     <a href="#menu-top">Categories ↑</a>
-    <button type="button" data-reserve-open>Reserve <span>↗</span></button>
+    <button type="button" data-reserve-open>Reserve <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
   </div>
 
   <ReservationDialog />

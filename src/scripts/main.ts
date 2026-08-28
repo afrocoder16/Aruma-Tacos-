@@ -312,7 +312,6 @@ function setupScrollMotion() {
   manifestoLines.forEach((line, index) => {
     gsap.from(line, {
       xPercent: index % 2 === 0 ? -13 : 13,
-      autoAlpha: .2,
       ease: 'none',
       scrollTrigger: { trigger: '.manifesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
     });

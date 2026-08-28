@@ -9,67 +9,73 @@ import { menu, site } from '../data/site';
 
 import heroImage from '../assets/images/bar.png';
 import cocktailImage from '../assets/images/aruma-cocktail.png';
-import birriaImage from '../assets/images/birria.jpg';
 import fajitasImage from '../assets/images/fajitas.jpg';
 import churrosImage from '../assets/images/churros.jpg';
-import margaritaImage from '../assets/images/margarita.jpg';
 import agaveImage from '../assets/images/agave-field.jpg';
 import barNormalImage from '../assets/store pics/bar normal.png';
 import diningRoomImage from '../assets/store pics/inside.png';
 import diningRoomAltImage from '../assets/store pics/inside2.png';
 import kitchenImage from '../assets/store pics/kitchen.png';
 import patioImage from '../assets/store pics/outsite.png';
-import tacoSpreadImage from '../assets/images/sample-taco-spread.jpg';
-import streetTacosImage from '../assets/images/sample-street-tacos.jpg';
-import alPastorImage from '../assets/images/sample-al-pastor.jpg';
-import palomaImage from '../assets/images/sample-paloma.jpg';
-import horchataImage from '../assets/images/sample-horchata.jpg';
 import flanImage from '../assets/images/sample-flan.jpg';
 import friedIceCreamImage from '../assets/images/sample-fried-ice-cream.jpg';
+import quesabirriaMenuImage from '../assets/images/menu/Quesabirria.png';
+import streetTacosMenuImage from '../assets/images/menu/Street Tacos.png';
+import ribeyeTacosMenuImage from '../assets/images/menu/Ribeye Tacos.png';
+import alPastorMenuImage from '../assets/images/menu/Al Pastor.png';
+import tacoFlightMenuImage from '../assets/images/menu/Taco Flight.png';
+import arumaSpecialMenuImage from '../assets/images/menu/Aruma Special AI.png';
+import carneAsadaMenuImage from '../assets/images/menu/Carne Asada.png';
+import polloChipotleMenuImage from '../assets/images/menu/Pollo Chipotle AI.png';
+import supremeBurritoMenuImage from '../assets/images/menu/Supreme Burrito AI.png';
+import houseMargaritaMenuImage from '../assets/images/menu/house margarita.png';
+import reposadoArumaMenuImage from '../assets/images/menu/reposado aruma.png';
+import smokedPalomaMenuImage from '../assets/images/menu/smoked paloma.png';
+import dirtyHorchataMenuImage from '../assets/images/menu/dirty horchata.png';
+import tresLechesMenuImage from '../assets/images/menu/Tres Leches AI.png';
 
 const menuImages = {
-  tacos: birriaImage,
+  tacos: quesabirriaMenuImage,
   kitchen: fajitasImage,
-  cocktails: margaritaImage,
+  cocktails: houseMargaritaMenuImage,
   sweets: churrosImage,
 };
 
 const menuWidths = {
-  tacos: 1400,
+  tacos: 1536,
   kitchen: 1200,
-  cocktails: 1200,
+  cocktails: 1448,
   sweets: 667,
 };
 
 const menuItemVisuals = {
   tacos: [
-    { image: streetTacosImage, width: 1200, note: 'A street classic', alt: 'Street tacos served with fresh garnishes' },
-    { image: fajitasImage, width: 1200, note: 'From the fire', alt: 'Grilled ribeye with peppers and warm tortillas' },
-    { image: alPastorImage, width: 1200, note: 'Sweet heat', alt: 'Al pastor taco with onion, cilantro, and lime' },
-    { image: tacoSpreadImage, width: 1200, note: 'Find your favorite', alt: 'A colorful flight of tacos on traditional plates' },
+    { image: streetTacosMenuImage, width: 1536, note: 'A street classic', alt: 'Street tacos served with onion, cilantro, lime, rice, and beans' },
+    { image: ribeyeTacosMenuImage, width: 1448, note: 'From the fire', alt: 'Ribeye tacos with melted cheese, avocado sauce, onion, and cilantro' },
+    { image: alPastorMenuImage, width: 1448, note: 'Sweet heat', alt: 'Al pastor tacos with pineapple, onion, cilantro, and avocado sauce' },
+    { image: tacoFlightMenuImage, width: 1402, note: 'Find your favorite', alt: 'A colorful flight of tacos served for sharing' },
   ],
   kitchen: [
-    { image: fajitasImage, width: 1200, note: 'The house signature', alt: 'Aruma signature chicken and shrimp plate' },
-    { image: fajitasImage, width: 1200, note: 'Fire kissed', alt: 'Carne asada with blistered peppers and onions' },
-    { image: fajitasImage, width: 1200, note: 'Rich and smoky', alt: 'Chicken with chipotle cream and mushrooms' },
-    { image: tacoSpreadImage, width: 1200, note: 'Fully loaded', alt: 'A generously filled Mexican entrée' },
+    { image: arumaSpecialMenuImage, width: 1448, note: 'The house signature', alt: 'Aruma Special with grilled chicken, shrimp, peppers, squash, rice, and beans' },
+    { image: carneAsadaMenuImage, width: 1920, note: 'Fire kissed', alt: 'Carne asada served with rice, beans, pico de gallo, and guacamole' },
+    { image: polloChipotleMenuImage, width: 1448, note: 'Rich and smoky', alt: 'Pollo Chipotle with grilled chicken, chipotle cream, mushrooms, rice, and beans' },
+    { image: supremeBurritoMenuImage, width: 1448, note: 'Fully loaded', alt: 'Supreme Burrito with seasoned beef, queso, lettuce, pico de gallo, rice, and beans' },
   ],
   cocktails: [
-    { image: margaritaImage, width: 1200, note: 'Bright by design', alt: 'Classic house margarita with fresh lime' },
-    { image: margaritaImage, width: 1200, note: 'Aged and polished', alt: 'Reposado margarita with citrus' },
-    { image: palomaImage, width: 1200, note: 'Smoke meets citrus', alt: 'Paloma cocktail with grapefruit garnish' },
-    { image: horchataImage, width: 1200, note: 'Dessert in a glass', alt: 'Creamy horchata drink with cinnamon' },
+    { image: houseMargaritaMenuImage, width: 1448, note: 'Bright by design', alt: 'House margaritas served with fresh citrus at Aruma' },
+    { image: reposadoArumaMenuImage, width: 1122, note: 'Aged and polished', alt: 'Reposado Aruma cocktail garnished with citrus' },
+    { image: smokedPalomaMenuImage, width: 1254, note: 'Smoke meets citrus', alt: 'Smoked Paloma cocktail with grapefruit and lime' },
+    { image: dirtyHorchataMenuImage, width: 1023, note: 'Dessert in a glass', alt: 'Dirty Horchata cocktail finished with cinnamon' },
   ],
   sweets: [
     { image: friedIceCreamImage, width: 1200, note: 'Hot meets cold', alt: 'Fried ice cream with a crisp shell and chocolate' },
     { image: flanImage, width: 1200, note: 'Silky and slow', alt: 'Caramel flan served on a white plate' },
-    { image: churrosImage, width: 667, note: 'Save room', alt: 'A soft Mexican cake with cream and cinnamon' },
+    { image: tresLechesMenuImage, width: 1448, note: 'Save room', alt: 'Tres Leches cake topped with whipped cream, cinnamon, and fresh strawberries' },
     { image: churrosImage, width: 667, note: 'One more thing', alt: 'Warm cinnamon sugar churros' },
   ],
 } as const;
 
 const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
-const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sample-two`;
 ---
 
 <BaseLayout
@@ -84,7 +90,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
   <main id="top">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero__media" data-hero-media>
-        <Image src={heroImage} alt="The illuminated bar inside Aruma Tacos & Tequila in Marshall" width={1536} loading="eager" decoding="sync" quality={88} />
+        <Image src={heroImage} alt="The illuminated bar inside Aruma Tacos & Tequila in Marshall" widths={[640, 960, 1280, 1536]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" quality={76} />
       </div>
       <div class="hero__wash"></div>
       <div class="hero__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -98,8 +104,8 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
         <div class="hero__lower" data-hero-item>
           <p>Mexican flavor with a pulse. Come for the fire, stay for the feeling, and let one quick dinner become the whole night.</p>
           <div class="hero__actions">
-            <button class="button button--copper" type="button" data-reserve-open>Reserve a table <span>↗</span></button>
-            <a class="text-link text-link--light" href={menuUrl}>View the full menu <span>↗</span></a>
+            <button class="button button--copper" type="button" data-reserve-open>Reserve a table <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
+            <a class="text-link text-link--light" href={menuUrl}>View the full menu <span class="icon-arrow-up-right" aria-hidden="true"></span></a>
           </div>
         </div>
       </div>
@@ -177,7 +183,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
           <span>01</span><div><small>HEAR IT FIRST</small><h3>Fresh from<br /><em>the fire.</em></h3><p>Char, smoke, sizzle—the room knows your plate is coming before you do.</p></div>
         </article>
         <article class="ritual-card ritual-card--lifted" data-ritual-card>
-          <div class="ritual-card__image image-reveal"><Image src={birriaImage} alt="Birria tacos with consommé and fresh lime" width={1400} quality={82} loading="lazy" /></div>
+          <div class="ritual-card__image image-reveal"><Image src={quesabirriaMenuImage} alt="Aruma quesabirria tacos with consommé and fresh lime" width={1448} quality={82} loading="lazy" /></div>
           <span>02</span><div><small>PASS IT AROUND</small><h3>Made for<br /><em>the table.</em></h3><p>The best order is everyone’s order. Reach across, steal a bite, find a favorite.</p></div>
         </article>
         <article class="ritual-card" data-ritual-card>
@@ -195,10 +201,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
         </div>
         <div data-reveal>
           <p>A tight edit of house favorites. Tap a category and discover what your table is ordering next.</p>
-          <div class="menu-section__actions">
-            <a class="button button--acid" href={menuUrl}>Open Menu One <span>↗</span></a>
-            <a class="text-link text-link--light" href={sampleMenuUrl}>See Menu Two <span>↗</span></a>
-          </div>
+          <a class="button button--acid" href={menuUrl}>Open the full digital menu <span class="icon-arrow-up-right" aria-hidden="true"></span></a>
         </div>
       </header>
 
@@ -249,7 +252,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
                   <span>0{itemIndex + 1}</span>
                   <div><strong>{item[0]}</strong><small>{item[1]}</small></div>
                   <b>${item[2]}</b>
-                  <i aria-hidden="true">↗</i>
+                  <i class="icon-arrow-up-right" aria-hidden="true"></i>
                 </button>
               ))}
             </div>
@@ -266,7 +269,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
         <span>Deep smoke.</span>
         <span>Good trouble.</span>
       </h2>
-      <div class="manifesto__mark" aria-hidden="true"><BrandMark size={480} /></div>
+      <div class="manifesto__mark" aria-hidden="true"><BrandMark size={245} /></div>
     </section>
 
     <section class="agave" id="agave">
@@ -319,7 +322,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
         <p class="kicker" data-reveal><span>06 · Gather</span> Your people, our table</p>
         <h2 class="display-heading" data-split>Bring the<br /><em>whole crew.</em></h2>
         <p data-reveal>Birthdays, team dinners, family nights, or no reason at all. Tell us what you’re planning and we’ll help make it feel effortless.</p>
-        <button class="button button--acid" type="button" data-reserve-open>Plan a gathering <span>↗</span></button>
+        <button class="button button--acid" type="button" data-reserve-open>Plan a gathering <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
       </div>
       <div class="gather__note"><span>GROUP DINING</span><strong>7+ guests</strong><small>Let’s make a night of it</small></div>
     </section>
@@ -338,7 +341,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-          <a class="visit__directions" href={site.directions} target="_blank" rel="noopener">Open in Google Maps <b>↗</b></a>
+          <a class="visit__directions" href={site.directions} target="_blank" rel="noopener">Open in Google Maps <b><span class="icon-arrow-up-right" aria-hidden="true"></span></b></a>
         </div>
         <div class="visit__details">
           <div class="visit__status"><i></i><span>NOW OPEN</span></div>
@@ -351,7 +354,7 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
             {site.hours.map((hours) => <div class="visit__hours"><strong>{hours[0]}</strong><time>{hours[1]}</time></div>)}
           </div>
           <p>Lunch. Date night. Family dinner. Just one excellent margarita. There’s a seat for you.</p>
-          <button class="button button--copper" type="button" data-reserve-open>Reserve your table <span>↗</span></button>
+          <button class="button button--copper" type="button" data-reserve-open>Reserve your table <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
         </div>
       </div>
     </section>
@@ -362,8 +365,8 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
       <p>GOOD FOOD · COLD GLASSES · GREAT STORIES</p>
       <h2 data-split>See you at<br /><em>Aruma.</em></h2>
       <div>
-        <button class="button button--acid" type="button" data-reserve-open>Save your seat <span>↗</span></button>
-        <a class="text-link text-link--light" href={site.directions} target="_blank" rel="noopener">Get directions <span>↗</span></a>
+        <button class="button button--acid" type="button" data-reserve-open>Save your seat <span class="icon-arrow-up-right" aria-hidden="true"></span></button>
+        <a class="text-link text-link--light" href={site.directions} target="_blank" rel="noopener">Get directions <span class="icon-arrow-up-right" aria-hidden="true"></span></a>
       </div>
     </section>
   </main>
@@ -374,14 +377,14 @@ const sampleMenuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu-sampl
       <p>Mexican flavor with a pulse.<br />Now serving Marshall.</p>
     </div>
     <nav aria-label="Footer navigation"><span>EXPLORE</span><a href="#story">Our story</a><a href={menuUrl}>Full menu</a><a href="#agave">The bar</a><a href="#gather">Group dining</a></nav>
-    <div class="footer__visit"><span>VISIT</span><p>900 Clarice Ave<br />Marshall, MN 56258</p><a href={site.directions} target="_blank" rel="noopener">Directions ↗</a></div>
-    <div class="footer__open"><span>COME AS YOU ARE</span><button class="button button--outline-light" type="button" data-reserve-open>Reserve <span>↗</span></button></div>
-    <div class="footer__bottom"><small>© {new Date().getFullYear()} Aruma Tacos &amp; Tequila</small><small>Concept photography · Replace before launch</small><a href="#top">Back to top ↑</a></div>
+    <div class="footer__visit"><span>VISIT</span><p>900 Clarice Ave<br />Marshall, MN 56258</p><a href={site.directions} target="_blank" rel="noopener">Directions <span class="icon-arrow-up-right" aria-hidden="true"></span></a></div>
+    <div class="footer__open"><span>COME AS YOU ARE</span><button class="button button--outline-light" type="button" data-reserve-open>Reserve <span class="icon-arrow-up-right" aria-hidden="true"></span></button></div>
+    <div class="footer__bottom"><small>© {new Date().getFullYear()} Aruma Tacos &amp; Tequila</small><small>Fresh fire · fine tequila · good company</small><a href="#top">Back to top ↑</a></div>
   </footer>
 
   <div class="mobile-booking-bar">
-    <a href={menuUrl}><i></i> Full menu <b>↗</b></a>
-    <button type="button" data-reserve-open>Reserve <b>↗</b></button>
+    <a href={menuUrl}><i></i> Full menu <b class="icon-arrow-up-right" aria-hidden="true"></b></a>
+    <button type="button" data-reserve-open>Reserve <b class="icon-arrow-up-right" aria-hidden="true"></b></button>
   </div>
 
   <ReservationDialog />
