@@ -8,6 +8,7 @@
 .m2-header nav { justify-self: end; display: flex; align-items: center; gap: 28px; }
 .m2-header nav a { padding-bottom: 3px; border-bottom: 1px solid rgba(7,29,24,.32); font-size: 10px; font-weight: 700; }
 .m2-header nav button { min-height: 46px; display: inline-flex; align-items: center; gap: 24px; padding: 0 18px; color: var(--ink); background: var(--acid); border: 0; font-size: 10px; font-weight: 800; cursor: pointer; }
+.m2-header nav [data-m2-cart-open] { min-height: auto; padding: 3px 0; background: transparent; border-bottom: 1px solid rgba(7,29,24,.32); }
 
 .m2-hero { min-height: calc(100svh - 82px); display: grid; grid-template-columns: .8fr 1.2fr; overflow: hidden; }
 .m2-hero__copy { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; padding: clamp(75px, 8vw, 130px) clamp(28px, 6.4vw, 105px); background: var(--forest); }
@@ -81,6 +82,8 @@
 .m2-picks__grid article > button span { margin-right: 8px; color: var(--acid); }
 .m2-picks__grid article > button[aria-pressed='true'] { color: var(--ink); background: var(--acid); }
 .m2-picks__grid article > button[aria-pressed='true'] span { color: var(--ink); }
+.m2-picks__grid article > a { grid-column: 1 / -1; min-height: 48px; display: flex; align-items: center; justify-content: center; color: var(--white); background: var(--forest); font-size: 9px; font-weight: 750; letter-spacing: .08em; }
+.m2-picks__grid article > a span { margin-right: 8px; color: var(--acid); }
 
 .m2-group { scroll-margin-top: 150px; min-height: 760px; display: grid; grid-template-columns: .94fr 1.06fr; background: var(--paper); border-top: 1px solid rgba(7,29,24,.13); }
 .m2-group--reverse .m2-group__visual { order: 2; }
@@ -209,6 +212,7 @@ body.m2-dialog-open { overflow: hidden; }
 .m2-cart > footer > div strong { color: var(--acid); font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; line-height: 1; }
 .m2-cart > footer > p { margin: 8px 0 18px; color: rgba(255,255,255,.4); font-size: 8px; }
 .m2-cart > footer > button:first-of-type { width: 100%; min-height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: var(--ink); background: var(--acid); border: 0; font-size: 10px; font-weight: 850; cursor: pointer; }
+.m2-cart > footer > button:first-of-type:disabled { color: rgba(7,29,24,.55); background: #b9c797; cursor: not-allowed; }
 .m2-cart > footer > button:last-of-type { display: block; margin: 14px auto 0; padding: 0; color: rgba(255,255,255,.5); background: transparent; border: 0; border-bottom: 1px solid currentColor; font-size: 8px; cursor: pointer; }
 @keyframes m2-cart-in { from { opacity: 0; transform: translateX(55px); } to { opacity: 1; transform: none; } }
 

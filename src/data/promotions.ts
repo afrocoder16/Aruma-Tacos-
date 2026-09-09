@@ -5,10 +5,10 @@ export const promotion = {
   accent: 'Big welcome.',
   value: '20%',
   valueLabel: 'off',
-  description: 'Celebrate our grand opening with 20% off all month long when you order online.',
+  description: 'Celebrate our grand opening with 20% off all month long at Aruma.',
   code: 'GRANDOPENING',
-  tags: ['All August', 'Online orders', 'Limited time'],
+  tags: ['All August', 'At Aruma', 'Limited time'],
   imageAlt: 'The illuminated tequila bar inside Aruma',
   imageCaption: 'Marshall, meet your new favorite table.',
-  action: { label: 'Order online', href: 'menu' },
+  action: { label: 'View the menu', href: 'menu' },
 } as const;
