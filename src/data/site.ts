@@ -5,6 +5,7 @@ export const site = {
   address: '900 Clarice Ave, Marshall, MN 56258',
   directions: 'https://www.google.com/maps/dir/?api=1&destination=900+Clarice+Ave%2C+Marshall%2C+MN+56258',
   mapEmbed: 'https://www.google.com/maps?q=900%20Clarice%20Ave%2C%20Marshall%2C%20MN%2056258&output=embed',
+  facebook: 'https://www.facebook.com/profile.php?id=61591195945910',
   instagram: 'https://www.instagram.com/',
   hours: [
     ['Sunday — Thursday', '11:00 AM — 9:30 PM'],
