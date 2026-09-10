@@ -450,6 +450,7 @@ button { padding: 0; }
 .footer__social-link { margin-top: 3px; padding-bottom: 3px; color: rgba(255,255,255,.62); border-bottom: 1px solid rgba(255,255,255,.3); font-family: 'Cormorant Garamond', serif; font-size: 17px; }
 .footer__bottom { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 25px; margin-top: 45px; padding-top: 22px; color: rgba(255,255,255,.58); border-top: 1px solid var(--line-light); font-size: 9px; letter-spacing: .07em; }
 .footer__bottom small a { color: var(--acid); }
+.footer__bottom .footer__credit { font-size: 12px; font-weight: 600; letter-spacing: .03em; }
 .mobile-booking-bar { display: none; }
 
 dialog { border: 0; }
