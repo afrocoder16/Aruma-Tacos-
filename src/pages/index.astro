@@ -30,7 +30,6 @@ import polloChipotleMenuImage from '../assets/images/menu/Pollo Chipotle AI.png'
 import supremeBurritoMenuImage from '../assets/images/menu/Supreme Burrito AI.png';
 import houseMargaritaMenuImage from '../assets/images/menu/house margarita.png';
 import reposadoArumaMenuImage from '../assets/images/menu/reposado aruma.png';
-import smokedPalomaMenuImage from '../assets/images/menu/smoked paloma.png';
 import dirtyHorchataMenuImage from '../assets/images/menu/dirty horchata.png';
 import tresLechesMenuImage from '../assets/images/menu/Tres Leches AI.png';
 
@@ -64,7 +63,6 @@ const menuItemVisuals = {
   cocktails: [
     { image: houseMargaritaMenuImage, width: 1448, note: 'Bright by design', alt: 'House margaritas served with fresh citrus at Aruma' },
     { image: reposadoArumaMenuImage, width: 1122, note: 'Aged and polished', alt: 'Reposado Aruma cocktail garnished with citrus' },
-    { image: smokedPalomaMenuImage, width: 1254, note: 'Smoke meets citrus', alt: 'Smoked Paloma cocktail with grapefruit and lime' },
     { image: dirtyHorchataMenuImage, width: 1023, note: 'Dessert in a glass', alt: 'Dirty Horchata cocktail finished with cinnamon' },
   ],
   sweets: [
@@ -291,8 +289,7 @@ const menuUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/menu`;
             <div class="agave__selector-head"><span>TASTING FLIGHT</span><small>Pick a mood</small></div>
             <button class="cocktail-choice is-active" type="button" data-note="Crisp · lime · agave" data-proof="Bright & clean"><span>01</span><strong>House Margarita</strong><small>$10</small></button>
             <button class="cocktail-choice" type="button" data-note="Orange · oak · sea salt" data-proof="Warm & smooth"><span>02</span><strong>Reposado Aruma</strong><small>$13</small></button>
-            <button class="cocktail-choice" type="button" data-note="Mezcal · grapefruit · smoke" data-proof="Smoky & tart"><span>03</span><strong>Smoked Paloma</strong><small>$13</small></button>
-            <button class="cocktail-choice" type="button" data-note="Four flavors · one flight" data-proof="Made to share"><span>04</span><strong>Margarita Flight</strong><small>$22</small></button>
+            <button class="cocktail-choice" type="button" data-note="Four flavors · one flight" data-proof="Made to share"><span>03</span><strong>Margarita Flight</strong><small>$22</small></button>
             <div class="agave__notes"><span>TASTING NOTES</span><strong data-tasting-note>Crisp · lime · agave</strong><small data-tasting-mood>Bright &amp; clean</small></div>
           </div>
         </div>

@@ -18,7 +18,6 @@ import alPastorImage from '../assets/images/sample-al-pastor.jpg';
 import streetCornImage from '../assets/images/sample-street-corn.jpg';
 import flanImage from '../assets/images/sample-flan.jpg';
 import friedIceCreamImage from '../assets/images/sample-fried-ice-cream.jpg';
-import palomaImage from '../assets/images/menu/smoked paloma.png';
 import horchataImage from '../assets/images/menu/dirty horchata.png';
 import streetTacosMenuImage from '../assets/images/menu/Street Tacos.png';
 import ribeyeTacosImage from '../assets/images/menu/Ribeye Tacos.png';
@@ -38,7 +37,6 @@ const itemPhotoAssets = {
   birria: birriaImage,
   fajitas: fajitasImage,
   margarita: margaritaImage,
-  paloma: palomaImage,
   horchata: horchataImage,
   cocktail: cocktailImage,
   churros: churrosImage,
@@ -62,8 +60,8 @@ const itemPhotos = Object.fromEntries(await Promise.all(
 )) as Record<keyof typeof itemPhotoAssets, string>;
 
 const getItemPhoto = (groupId: string, itemName: string) => {
-  if (itemName === 'Guacamole') return 'guacamole';
-  if (itemName === 'Street Corn') return 'streetCorn';
+  if (itemName === 'Tableside Guacamole') return 'guacamole';
+  if (itemName === 'Elote') return 'streetCorn';
   if (itemName === 'Quesabirria') return 'birria';
   if (itemName === 'Al Pastor') return 'alPastorMenu';
   if (itemName === 'Ribeye') return 'ribeyeTacos';
@@ -71,7 +69,6 @@ const getItemPhoto = (groupId: string, itemName: string) => {
   if (itemName === 'Carne Asada') return 'carneAsada';
   if (itemName === 'Pollo Chipotle') return 'polloChipotle';
   if (itemName === 'Reposado Aruma') return 'reposadoAruma';
-  if (itemName === 'Smoked Paloma') return 'paloma';
   if (itemName === 'Dirty Horchata') return 'horchata';
   if (itemName === 'Tres Leches') return 'tresLeches';
   if (itemName === 'Flan') return 'flan';
@@ -85,10 +82,10 @@ const getItemPhoto = (groupId: string, itemName: string) => {
 };
 
 const menuVisuals = {
-  share: { image: tacoSpreadImage, alt: 'Colorful tacos and shared plates on a wooden table', callout: 'Pass it around', featured: 'Guacamole' },
+  share: { image: tacoSpreadImage, alt: 'Colorful tacos and shared plates on a wooden table', callout: 'Pass it around', featured: 'Tableside Guacamole' },
   tacos: { image: birriaImage, alt: 'Crisped quesabirria tacos with consommé and lime', callout: 'Dip. Bite. Repeat.', featured: 'Quesabirria' },
   signatures: { image: fajitasImage, alt: 'A sizzling skillet of steak, shrimp, and vegetables', callout: 'Born from the fire', featured: 'Aruma Special' },
-  fajitas: { image: fajitasImage, alt: 'Aruma fajitas served hot from the kitchen', callout: 'Hear them coming', featured: 'Fajitas Aruma' },
+  fajitas: { image: fajitasImage, alt: 'Aruma fajitas served hot from the kitchen', callout: 'Hear them coming', featured: 'Fajitas for two' },
   cocktails: { image: margaritaImage, alt: 'A classic margarita with a salted rim and fresh lime', callout: 'Bright by design', featured: 'House Margarita' },
   agave: { image: cocktailImage, alt: 'A handcrafted smoky citrus cocktail at Aruma', callout: 'Sip with intention', featured: 'Vida Oaxaca' },
   sweets: { image: churrosImage, alt: 'Warm cinnamon sugar churros with dipping sauces', callout: 'There is always room', featured: 'Churros' },
@@ -96,7 +93,7 @@ const menuVisuals = {
 
 const picks = [
   { name: 'Quesabirria', note: 'Slow-braised · molten cheese · consommé', price: '18', image: birriaImage, alt: 'Aruma quesabirria tacos' },
-  { name: 'Fajitas Aruma', note: 'Steak · chicken · shrimp · chorizo', price: '44', image: fajitasImage, alt: 'Aruma signature fajitas' },
+  { name: 'Parrillada Aruma', note: 'Steak · chicken · shrimp · chorizo', price: '44', image: fajitasImage, alt: 'Aruma signature parrillada' },
   { name: 'House Margarita', note: 'Blanco · lime · orange · agave', price: '10', image: margaritaImage, alt: 'Classic lime margarita' },
 ] as const;
 
@@ -199,7 +196,7 @@ const homeUrl = import.meta.env.BASE_URL;
     <div class="m2-dish__photo"><img src={itemPhotos.guacamole} alt="" data-m2-dish-image /><span>VISUAL MENU · TAP TO CHOOSE</span><i data-m2-dish-price>$12</i></div>
     <div class="m2-dish__details">
       <p><span data-m2-dish-category>For the table</span><i></i>ARUMA MENU</p>
-      <h2 id="m2-dish-name" data-m2-dish-name>Guacamole</h2>
+      <h2 id="m2-dish-name" data-m2-dish-name>Tableside Guacamole</h2>
       <p data-m2-dish-description>Avocado · pico · lime · warm chips</p>
       <div><button type="button" data-m2-dish-close><span>←</span> Back to menu</button><small>Browse the visual menu, then order with your server at Aruma.</small></div>
     </div>

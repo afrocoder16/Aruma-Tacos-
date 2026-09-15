@@ -27,13 +27,13 @@ export const menu = {
       ['Street Tacos', 'Three tacos · rice · beans · verde · picante', '16'],
       ['Ribeye', 'Queso costra · chimichurri · avocado sauce', '24'],
       ['Al Pastor', 'Onion · cilantro · pineapple · avocado sauce', '16'],
-      ['Taco Flight', 'Choose three styles · find your favorite', '18'],
+      ['Taco Flight', 'Choose three styles · find your favorite', '45'],
     ],
   },
   kitchen: {
     label: 'From the kitchen',
     hero: {
-      name: 'Fajitas Aruma',
+      name: 'Parrillada Aruma',
       note: 'From the fire',
       description: 'Steak, chicken, shrimp, and chorizo with blistered peppers, onions, rice, beans, and warm tortillas.',
       price: '44',
@@ -58,8 +58,7 @@ export const menu = {
     items: [
       ['House Margarita', 'Blanco · lime · orange · agave', '10'],
       ['Reposado Aruma', 'Reposado · orange liqueur · lime · agave', '13'],
-      ['Smoked Paloma', 'Mezcal · grapefruit · lime · sea salt', '13'],
-      ['Dirty Horchata', 'Rum · horchata · café · cinnamon', '12'],
+      ['Dirty Horchata', 'Rum · horchata · café · cinnamon', '11'],
     ],
   },
   sweets: {
@@ -73,7 +72,7 @@ export const menu = {
     },
     items: [
       ['Fried Ice Cream', 'Crisp shell · vanilla · warm chocolate', '7'],
-      ['Flan', 'Silky custard · caramel · sea salt', '7'],
+      ['Flan', 'Silky custard · caramel · sea salt', '8'],
       ['Tres Leches', 'Three-milk cake · cream · cinnamon', '8'],
       ['Churros', 'Cinnamon sugar · cajeta · chocolate', '15'],
     ],
@@ -86,10 +85,9 @@ export const fullMenu = [
     category: 'For the table',
     note: 'Start together',
     items: [
-      ['Guacamole', 'Avocado · pico · lime · warm chips', '12'],
-      ['Queso Fundido', 'Melted cheese · chorizo · poblano · tortillas', '14'],
-      ['Tuna Tostadas', 'Ahi tuna · avocado · chile · sesame', '16'],
-      ['Street Corn', 'Charred corn · cotija · chile · lime', '9'],
+      ['Tableside Guacamole', 'Avocado · pico · lime · warm chips', '15'],
+      ['Queso Fundido', 'Melted cheese · chorizo · poblano · tortillas', '12'],
+      ['Elote', 'Charred corn · cotija · chile · lime', '12'],
     ],
   },
   {
@@ -113,20 +111,19 @@ export const fullMenu = [
       ['Aruma Special', 'Chicken · shrimp · peppers · squash · poblano crema', '19'],
       ['Quesabirria', 'Slow-braised beef · cheese · rice · beans · consommé', '18'],
       ['Carne Asada', 'Skirt steak · peppers · onion · rice · beans', '22'],
-      ['Fajitas Aruma', 'Steak · chicken · shrimp · chorizo · tortillas', '44'],
+      ['Parrillada Aruma', 'Steak · chicken · shrimp · chorizo · tortillas', '44'],
       ['Pollo Chipotle', 'Chicken · chipotle cream · mushrooms · rice', '18'],
     ],
   },
   {
     id: 'fajitas',
     category: 'Fajitas',
-    note: 'Served sizzling',
+    note: 'Single / for two',
     items: [
-      ['Chicken', 'Peppers · onion · warm tortillas · rice · beans', '30'],
-      ['Steak', 'Peppers · onion · warm tortillas · rice · beans', '33'],
-      ['Shrimp', 'Peppers · onion · warm tortillas · rice · beans', '36'],
-      ['Seafood', 'Shrimp · fish · peppers · onion · warm tortillas', '36'],
-      ['Fajitas Aruma', 'Steak · chicken · shrimp · chorizo · built for two', '44'],
+      ['Chicken', 'Peppers · onion · warm tortillas · rice · beans', '18 / $30'],
+      ['Steak', 'Peppers · onion · warm tortillas · rice · beans', '19 / $33'],
+      ['Shrimp', 'Peppers · onion · warm tortillas · rice · beans', '22 / $36'],
+      ['Seafood', 'Shrimp · fish · peppers · onion · warm tortillas', '22 / $36'],
     ],
   },
   {
@@ -136,9 +133,8 @@ export const fullMenu = [
     items: [
       ['House Margarita', 'Blanco · lime · orange · agave', '10'],
       ['Reposado Aruma', 'Reposado · orange liqueur · lime · agave', '13'],
-      ['Smoked Paloma', 'Mezcal · grapefruit · lime · sea salt', '13'],
       ['Margarita Flight', 'Four rotating mini margaritas', '22'],
-      ['Dirty Horchata', 'Rum · horchata · café · cinnamon', '12'],
+      ['Dirty Horchata', 'Rum · horchata · café · cinnamon', '11'],
     ],
   },
   {
@@ -160,7 +156,7 @@ export const fullMenu = [
     items: [
       ['Churros', 'Cinnamon sugar · cajeta · warm chocolate', '15'],
       ['Fried Ice Cream', 'Crisp shell · vanilla · warm chocolate', '7'],
-      ['Flan', 'Silky custard · caramel · sea salt', '7'],
+      ['Flan', 'Silky custard · caramel · sea salt', '8'],
       ['Tres Leches', 'Three-milk cake · cream · cinnamon', '8'],
       ['Kids Tenders & Fries', 'A little something for the niños', '9'],
     ],
