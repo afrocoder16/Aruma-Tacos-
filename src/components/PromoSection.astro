@@ -1,78 +1,59 @@
 ---
 import { Image } from 'astro:assets';
-import interiorImage from '../assets/images/bar.png';
+import seafoodImage from '../assets/images/wednesday-seafood-promo.png';
 import { promotion } from '../data/promotions';
+import { site } from '../data/site';
 ---
 
 <section class="promos" id="specials" aria-labelledby="promo-heading">
   <article class="promo-feature section-shell" data-reveal>
     <div class="promo-feature__copy">
       <div class="promo-feature__topline">
-        <span><i></i>Now celebrating</span>
-        <small>August 2026 · Marshall, MN</small>
+        <span><i></i>Coming up at Aruma</span>
+        <small>{site.address}</small>
       </div>
 
       <p class="promo-feature__eyebrow">{promotion.eyebrow}</p>
       <h2 id="promo-heading">{promotion.lead}<br /><em>{promotion.accent}</em></h2>
 
-      <div class="promo-feature__offer">
-        <strong>{promotion.value}</strong>
-        <span>{promotion.valueLabel}</span>
-        <p>{promotion.description}</p>
+      <div class="promo-feature__date-row">
+        <time datetime={promotion.date.iso}>
+          <span>{promotion.date.weekday.slice(0, 3)}</span>
+          <strong>{promotion.date.day}</strong>
+          <small>{promotion.date.monthShort}</small>
+        </time>
+        <div>
+          <strong>{promotion.headline}</strong>
+          <p>{promotion.description}</p>
+        </div>
       </div>
+
+      <p class="promo-feature__invitation">{promotion.invitation}</p>
 
       <ul class="promo-feature__tags" aria-label="Promotion details">
         {promotion.tags.map((tag) => <li>{tag}</li>)}
       </ul>
 
       <div class="promo-feature__actions">
-        <a href={promotion.action.href}>{promotion.action.label}<span class="icon-arrow-up-right" aria-hidden="true"></span></a>
-        <button type="button" data-copy-promo data-code={promotion.code} aria-label={`Copy promo code ${promotion.code}`}>
-          <small>USE CODE</small>
-          <strong>{promotion.code}</strong>
-          <span data-copy-label>Copy</span>
+        <button class="promo-feature__primary" type="button" data-reserve-open>
+          Reserve your table <span class="icon-arrow-up-right" aria-hidden="true"></span>
         </button>
+        <a class="promo-feature__secondary" href={promotion.action.href}>{promotion.action.label}<span class="icon-arrow-up-right" aria-hidden="true"></span></a>
       </div>
     </div>
 
     <figure class="promo-feature__visual">
-      <Image src={interiorImage} alt={promotion.imageAlt} widths={[720, 1080, 1440]} sizes="(max-width: 800px) 100vw, 55vw" loading="lazy" />
+      <Image src={seafoodImage} alt={promotion.imageAlt} widths={[720, 1080, 1536]} sizes="(max-width: 980px) 100vw, 55vw" quality={82} loading="lazy" />
       <div class="promo-feature__burst" aria-hidden="true">
-        <small>GRAND<br />OPENING</small>
-        <strong>{promotion.value}</strong>
-        <span>{promotion.valueLabel}</span>
+        <small>SEAFOOD<br />NIGHT</small>
+        <strong>{promotion.date.weekday.slice(0, 3)}</strong>
+        <span>{promotion.date.monthShort} {promotion.date.day}</span>
       </div>
       <figcaption>{promotion.imageCaption}</figcaption>
     </figure>
 
     <div class="promo-feature__ribbon" aria-hidden="true">
-      <span>20% OFF ALL AUGUST</span><i>✦</i><span>USE CODE {promotion.code}</span><i>✦</i><span>WELCOME TO ARUMA</span>
+      <span>SEAFOOD WEDNESDAY</span><i>✦</i><span>{promotion.date.month} {promotion.date.day}</span><i>✦</i><span>900 CLARICE AVE · MARSHALL, MN</span>
     </div>
   </article>
-
-  <p class="promos__copy-status" role="status" aria-live="polite" data-copy-status></p>
 </section>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>('[data-copy-promo]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const code = button.dataset.code;
-      const label = button.querySelector<HTMLElement>('[data-copy-label]');
-      const status = document.querySelector<HTMLElement>('[data-copy-status]');
-      if (!code) return;
-      let copied = false;
-      try {
-        await navigator.clipboard.writeText(code);
-        copied = true;
-      } catch {
-        copied = false;
-      }
-      if (label) label.textContent = copied ? 'Copied' : 'Use code';
-      if (status) status.textContent = copied ? `${code} copied to clipboard.` : `Promo code: ${code}`;
-      window.setTimeout(() => {
-        if (label) label.textContent = 'Copy';
-        if (status) status.textContent = '';
-      }, 2200);
-    });
-  });
-</script>

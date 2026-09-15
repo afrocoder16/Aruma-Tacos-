@@ -21,7 +21,7 @@ npm run preview # Preview the production build
 
 - `src/pages/index.astro` — page structure and image assignments
 - `src/data/site.ts` — address, hours, featured menu data, and full-menu data
-- `src/data/promotions.ts` — the weekly specials, monthly offers, promo code, and VIP text-club details
+- `src/data/promotions.ts` — the featured event date, promotional copy, tags, and call to action
 - `src/styles/global.css` — visual system, layout, responsive behavior, and component styling
 - `src/scripts/main.ts` — GSAP motion and all page interactions
 - `src/components/` — shared header, brand mark, reservation flow, and full-menu dialog
@@ -54,7 +54,7 @@ For the cleanest results, avoid baked-in text, watermarks, phone UI, and extreme
 
 - Confirm hours, menu items, prices, and address in `src/data/site.ts`.
 - Replace the remaining food, cocktail, agave, and group-lifestyle placeholders with original restaurant photography.
-- Update weekly and monthly offers in `src/data/promotions.ts`; no component edits are required.
+- Update the featured event in `src/data/promotions.ts`; routine copy and date changes do not require component edits.
 - Connect the reservation form in `src/scripts/main.ts` to the restaurant's booking provider or form endpoint.
 - Replace the placeholder Instagram URL in `src/data/site.ts`.
 - Add final Open Graph photography and the production domain.
